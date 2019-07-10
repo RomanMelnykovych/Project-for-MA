@@ -1,11 +1,11 @@
 
-var userArray =[];
+var userArray = [];
 
 if (localStorage.getItem("users" ) !== undefined){
     userArray = JSON.parse(localStorage.getItem("users"));
     console.log(userArray);
     if (userArray === null){
-        userArray =[];
+        userArray = [];
         console.log(userArray);
     }
 }
@@ -27,8 +27,7 @@ document.getElementById("sign-in").onclick = function () {
         var i = userArray.length;
         userArray[i] = tempArray;
         localStorage.setItem("users", JSON.stringify(userArray));
-        window.location.href = "../login.html";
-
+        window.location.href = "login.html";
     }else {
         alert("Ваші паролі не збігаються!!!")
     }

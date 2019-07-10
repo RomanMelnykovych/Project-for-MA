@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/indexStyle.css">
+    <link rel="stylesheet" href="fontawesome/all.min.css">
+    <title>Money Tracker</title>
+</head>
+<body>
+<!-- Hamburger -->
+<div id="hamburger" class="hidden">
+    <div class="hamburger__wrapper">
+        <div class="user__info">
+            <button type="button" class="btn__hamburger" id="hamburgerOff"><i class="far fa-times-circle"></i></button>
+            <i class="fas fa-user-circle"></i>
+            <span id="nameUser"></span>
+        </div>
+        <div class="social__developer">
+            <p>Contact the developer:</p>
+            <div class="social__wrapper">
+                <p>E-mail: roman.melnykovych97@gmail.com</p>
+                <a href="https://www.instagram.com/romanmelnikovich/"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/sector9779"><i class="fab fa-facebook-square"></i></a>
+                <a href="https://www.linkedin.com/in/roman-melnykovych-530577188/"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Expense -->
+<div id="expense" class="hidden">
+    <div class="header">
+        <div class="header__wrapper">
+            <button type="button" class="btn__header" id="backInExpanse"><i class="fas fa-arrow-left"></i></button>
+            Expense
+            <button type="button" class="btn__header" id="expenseCheck"><i class="fas fa-check"></i></button>
+        </div>
+    </div>
+
+    <div class="main__expansion">
+            <form action="#" class="input__wrapper">
+                <div class="input__box">
+                    <label for="expenseDate">Date</label>
+                        <input type="date" name="calendar" id="expenseDate" class="input__default">
+                </div>
+                <div class="input__box">
+                    <label for="expenseCategory">Category</label>
+                        <select name="Category" id="expenseCategory" class="input__default">
+                            <option >Food</option>
+                            <option >Cafes and restaurants</option>
+                            <option >Relaxation</option>
+                            <option >Vehicle</option>
+                            <option >Communication</option>
+                        </select>
+                </div>
+                <div class="input__box">
+                    <label for="expenseAmount">Amount </label>
+                        <input type="number" name="amountExpense" id="expenseAmount" class="input__default" placeholder="Enter sum">
+                </div>
+            </form>
+        </div>
+</div>
+<!-- Incomes -->
+<div id="incomes" class="hidden">
+    <div class="header">
+        <div class="header__wrapper">
+            <button type="button" class="btn__header" id="backInIncomes"><i class="fas fa-arrow-left"></i></button>
+            Incomes
+            <button type="button" class="btn__header" id="incomesCheck"><i class="fas fa-check"></i></button>
+        </div>
+    </div>
+
+    <div class="main__expansion">
+        <form action="#" class="input__wrapper">
+            <div class="input__box">
+                <label for="incomesDate">Date</label>
+                <input type="date" name="calendar" id="incomesDate" class="input__default">
+
+            </div>
+            <div class="input__box">
+                <label for="incomesCategory">Category</label>
+                <select name="Category" id="incomesCategory" class="input__default">
+                    <option>Salary</option>
+                    <option>Premium</option>
+                    <option>Stipend</option>
+                </select>
+            </div>
+            <div class="input__box">
+                <label for="incomesAmount">Amount</label>
+                <input type="number" name="amountIncomes" id="incomesAmount" class="input__default" placeholder="Enter sum">
+            </div>
+        </form>
+
+    </div>
+</div>
+<!-- Expense history -->
+<div id="expenseHistory" class="hidden">
+    <div class="header">
+        <div class="header__wrapper">
+            <button type="button" class="btn__header" id="backInExpanseHistory"><i class="fas fa-arrow-left"></i></button>
+            Expense History
+            <button type="button" class="btn__header "><i class="fas fa-sign-out-alt"></i></button>
+        </div>
+    </div>
+    <div class="main__expansion">
+        <form action="#" class="history__period">
+            <input type="date" id="expenseHistoryDateStart" class="history__input"> - <input type="date" id="expenseHistoryDateEnd" class="history__input">
+        </form>
+        <div>All</div>
+        <div></div>
+    </div>
+</div>
+<!-- Incomes history -->
+<div id="incomesHistory" class="hidden">
+    <div class="header">
+        <div class="header__wrapper">
+            <button type="button" class="btn__header" id="backInIncomesHistory"><i class="fas fa-arrow-left"></i></button>
+            Incomes History
+            <button type="button" class="btn__header"><i class="fas fa-sign-out-alt"></i></button>
+        </div>
+    </div>
+
+    <div class="main__expansion">
+
+
+    </div>
+</div>
+<!-- Balance -->
+<div id="balance" class="hidden">
+    <div class="header">
+        <div class="header__wrapper">
+            <button type="button" class="btn__header" id="backInBalance"><i class="fas fa-arrow-left"></i></button>
+            Balance
+            <button type="button" class="btn__header"><i class="fas fa-sign-out-alt"></i></button>
+        </div>
+    </div>
+
+    <div class="main__expansion">
+
+
+    </div>
+</div>
+<!-- MAIN -->
+<div id="main" class="off__hidden">
+<header class="header">
+    <div class="header__wrapper">
+        <button type="button" class="btn__header" id="hamburgerOpen"><i class="fas fa-bars"></i></button>
+        Money Tracker
+        <button type="button" class="btn__header" id="signOut"><i class="fas fa-sign-out-alt"></i></button>
+    </div>
+</header>
+
+<div class="main__wrapper">
+    <div class="main__expansion">
+        <div class="name__section">Expenses</div>
+        <div class="period__wrapper">
+            <div class="period">
+                <div>Today <span id="amountExpenseDay">0</span></div>
+                <div>Week <span id="amountExpenseWeek">0</span></div>
+                <div>Month <span id="amountExpenseMonth">0</span></div>
+            </div>
+            <div class="btn__group">
+                <button type="button" class="main__btn" id="addExpense"><i class="fas fa-plus"></i></button>
+                <button type="button" class="main__btn" id="openExpenseHistory"><i class="fas fa-history"></i></button>
+            </div>
+        </div>
+
+    </div>
+    <div class="main__expansion">
+        <div class="name__section">Incomes</div>
+        <div class="period__wrapper">
+            <div class="period">
+                <div>Today <span id="amountIncomesDay">0</span></div>
+                <div>Week <span id="amountIncomesWeek">0</span></div>
+                <div>Month <span id="amountIncomesMonth">0</span></div>
+            </div>
+            <div class="btn__group">
+                <button type="button" class="main__btn" id="addIncomes"><i class="fas fa-plus"></i></button>
+                <button type="button" class="main__btn" id="openIncomesHistory"><i class="fas fa-history"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="main__expansion">
+        <div class="name__section">Balance</div>
+        <div class="period__wrapper">
+            <div class="period">
+                <div> All time <span>0</span></div>
+            </div>
+            <button type="button" class="main__btn" id="openBalance"><i class="fas fa-ellipsis-h"></i></button>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+<script rel="script" type="application/javascript" src="js/indexJS.js"></script>
+<script defer src="fontawesome/all.min.js"></script>
+</body>
+</html>

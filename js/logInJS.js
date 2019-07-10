@@ -1,50 +1,42 @@
+if (localStorage.getItem("authUser")) {
+    window.location.href = "../index.html";
+}
+
 var userArray = [];
-if (localStorage.getItem("users") !== undefined){
+if (localStorage.getItem("users")){
     userArray = JSON.parse(localStorage.getItem("users"));
     console.log(userArray);
 }
 
-
-var temp = {};
 document.getElementById("log-in").onclick = function () {
-
     var userName = document.getElementById("userName").value;
     var userPassword = document.getElementById("userPassword").value;
 
     if (userName !== "" && userPassword !== ""){
-        searchUser(userName);
-        if (Object.keys(temp).length === 0 ){
+        let temp = searchUser(userName);
+        console.log(temp);
+        if (temp === undefined){
             if(confirm("Ви не зареєстровані!! Бажаєте зареєструватись?") === true){
-                window.location.href = "views/Signin.html";
+                window.location.href = "signin.html";
             }
         }else if (userPassword !== temp.userpassword){
             alert("Невірний пароль!!")
         }else {
             localStorage.setItem("authUser", JSON.stringify(temp));
-            window.location.href = "https://www.google.com";
+            window.location.href = "../index.html";
         }
     } else {
         alert("Заповніть поля!!!");
     }
-
-
-
-    // if (temp.userpassword !== userPassword){
-    //     alert("errror")
-    // }
-
-
-    // if (userArray.length !== 0) {
-    //     console.log("dfscvxv");
-    //         //
-    //     //     //     }{
-    //     //     //         else {
-    //     //     //
-    //     //     // }
-    // }else console.log("Ви не зареєстровані!!");
 };
 
+document.getElementById("sign").onclick = function(){
+    window.location.href = "signin.html";
+};
+
+
 function searchUser (name){
+    let temp;
     for (let i = 0; i < userArray.length; i++){
         for (let key in userArray[i]){
             if (name === userArray[i][key] ) {
@@ -52,9 +44,5 @@ function searchUser (name){
             }
         }
     }
+    return temp
 }
-
-
-document.getElementById("sign").onclick = function(){
-    window.location.href = "views/Signin.html";
-};
