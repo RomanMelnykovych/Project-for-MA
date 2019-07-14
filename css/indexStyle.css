@@ -109,6 +109,7 @@ input::-webkit-inner-spin-button {
 }
 .main__expansion{
     position: relative;
+    font-size: 20px;
     margin: 10px;
     background-color: #ffffff;
     box-shadow: 0 0 5px rgba(0,0,0, .3);
@@ -130,7 +131,15 @@ input::-webkit-inner-spin-button {
     margin-top: 30px;
     margin-bottom: 15px;
     align-items: center;
-
+    position: relative;
+}
+.currency{
+    position: absolute;
+    font-size: 14px;
+    font-weight: bold;
+    color: #808080;
+    right: 60px;
+    top: -15px;
 }
 .period{
     font-size: 20px;
@@ -189,13 +198,26 @@ input::-webkit-inner-spin-button {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-bottom: 1px solid rgba(0,0,0, .3);
+    border-bottom: 1px solid rgba(0,0,0, .5);
     padding: 10px;
 }
 .history__input{
     font-size: 18px;
     text-align: right;
     border: none;
+}
+.history__all{
+    background-color: #f3dfc2;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 15px;
+    border-bottom: 1px solid rgba(0,0,0, .3);
+}
+.history__item{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 15px;
+    border-bottom: 1px solid rgba(0,0,0, .3);
 }
 #userName{
     text-transform: uppercase;

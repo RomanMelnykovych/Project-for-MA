@@ -104,10 +104,13 @@
     </div>
     <div class="main__expansion">
         <form action="#" class="history__period">
-            <input type="date" id="expenseHistoryDateStart" class="history__input"> - <input type="date" id="expenseHistoryDateEnd" class="history__input">
+            <input type="date" id="expenseHistoryDateStart" class="history__input"> -
+            <input type="date" id="expenseHistoryDateEnd" class="history__input">
         </form>
-        <div>All</div>
-        <div></div>
+        <div class="history__all">All:<span id="amountExpenseHistoryAll">0</span></div>
+        <div id="historyExpensePeriod">
+
+        </div>
     </div>
 </div>
 <!-- Incomes history -->
@@ -121,8 +124,14 @@
     </div>
 
     <div class="main__expansion">
+        <form action="#" class="history__period">
+            <input type="date" id="incomesHistoryDateStart" class="history__input"> -
+            <input type="date" id="incomesHistoryDateEnd" class="history__input">
+        </form>
+        <div class="history__all">All:<span id="amountIncomesHistoryAll">0</span></div>
+        <div id="historyIncomesPeriod">
 
-
+        </div>
     </div>
 </div>
 <!-- Balance -->
@@ -154,6 +163,7 @@
     <div class="main__expansion">
         <div class="name__section">Expenses</div>
         <div class="period__wrapper">
+            <div class="currency">UAH</div>
             <div class="period">
                 <div>Today <span id="amountExpenseDay">0</span></div>
                 <div>Week <span id="amountExpenseWeek">0</span></div>
@@ -169,6 +179,7 @@
     <div class="main__expansion">
         <div class="name__section">Incomes</div>
         <div class="period__wrapper">
+            <div class="currency">UAH</div>
             <div class="period">
                 <div>Today <span id="amountIncomesDay">0</span></div>
                 <div>Week <span id="amountIncomesWeek">0</span></div>
@@ -183,8 +194,9 @@
     <div class="main__expansion">
         <div class="name__section">Balance</div>
         <div class="period__wrapper">
+            <div class="currency">UAH</div>
             <div class="period">
-                <div> All time <span>0</span></div>
+                <div> All time <span id="amountBalance">0</span></div>
             </div>
             <button type="button" class="main__btn" id="openBalance"><i class="fas fa-ellipsis-h"></i></button>
         </div>

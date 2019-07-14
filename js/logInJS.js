@@ -39,7 +39,7 @@ function searchUser (name){
     let temp;
     for (let i = 0; i < userArray.length; i++){
         for (let key in userArray[i]){
-            if (name === userArray[i][key] ) {
+            if (name === userArray[i][key]) {
                 temp = userArray[i];
             }
         }

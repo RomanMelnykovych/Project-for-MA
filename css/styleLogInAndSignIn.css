@@ -16,7 +16,6 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     background: url("../img/bg-img.jpg") no-repeat center / cover;
     height: 100vh;
     box-shadow: 100vw 0 0 rgba(0,0,0, .75) inset;
@@ -44,7 +43,7 @@ body{
     border-radius: 30px;
     width: 100%;
     padding-left: 40px;
-    padding-right: 20px;
+    padding-right: 40px;
     margin-top: 5px;
     transition: all .2s linear;
 }
@@ -90,6 +89,43 @@ body{
 .btn.btn__sign:hover{
     box-shadow: 0 0 10px #FF1D1D;
 }
+/*Log in End*/
+
+/*Sign in*/
+.hidden{
+    display: none;
+}
+.input__group__sign{
+    color: rgba(255, 255, 255, .9);
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+.input__group__sign label{
+    position: relative;
+}
+.input__group__popUp{
+    display: block;
+    font-size: 12px;
+    font-style: italic;
+    text-align: center;
+    padding: 0 10px;
+}
+.input__group__sign .icon__error{
+    position: absolute;
+    font-size: 15px;
+    color: red;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-35%);
+}
+.error{
+    box-shadow: 0 0 15px rgba(242,38,19, .8);
+    border: 1px solid red;
+}
+.error:focus{
+    box-shadow: 0 0 15px rgba(242,38,19, .8);
+}
+
 
 @media (min-width: 480px) {
     .user__auth__form{
@@ -100,15 +136,4 @@ body{
     .user__auth__form{
         max-width: 480px;
     }
-}
-/*Log in End*/
-
-/*Sign in*/
-.input__group__sign{
-    color: rgba(255, 255, 255, .9);
-    font-size: 20px;
-    margin-bottom: 15px;
-}
-.input__group__sign label{
-    margin-left: 20px;
 }
