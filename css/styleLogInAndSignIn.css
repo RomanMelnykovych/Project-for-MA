@@ -31,8 +31,11 @@ body{
     width: 100%;
 }
 .input__group{
-    position: relative;
+    color: rgba(255, 255, 255, .9);
     margin-bottom: 20px;
+}
+.input__group label{
+    position: relative;
 }
 .form__input{
     border: 1px solid #49b871;
@@ -50,13 +53,16 @@ body{
 .form__input:focus{
     box-shadow: 0 0 15px rgba(73,184,113, .8);
 }
-.input__group .ic{
+.ic{
     color: #ffffff;
     font-size: 15px;
     position: absolute;
     left: 15px;
     top: 50%;
-    transform: translateY(-35%);
+    transform: translateY(-50%);
+}
+.ic.icon__error{
+    color: red;
 }
 .btn{
     display: inline-block;

@@ -1,478 +1,760 @@
-// if (!localStorage.getItem("authUser")){
-//     window.location.href = "views/login.html";
-// }
-
-var mainID = document.getElementById("main");
-var hamburger = document.getElementById("hamburger");
-var expense = document.getElementById("expense");
-var expenseHistory = document.getElementById("expenseHistory");
-var incomes = document.getElementById("incomes");
-var incomesHistory = document.getElementById("incomesHistory");
-var balance = document.getElementById("balance");
-
-// window.onload = function () {
-    // getExpenseAmountDay();
-    // getExpenseAmountWeek();
-    // getExpenseAmountMonth();
-    //
-    // getIncomesAmountDay();
-    // getIncomesAmountWeek();
-    // getIncomesAmountMonth();
-    //
-    // getAmountBalance();
-//
-// };
-//
-//
-// var userArray =[]; /*дані всіх юзерів*/
-// if (localStorage.getItem("users" ) !== undefined){
-//     userArray = JSON.parse(localStorage.getItem("users"));
-//     console.log(userArray);
-//     if (userArray === null){
-//         userArray = [];
-//         console.log(userArray);
-//     }
-// }
-//
-// var authUserArray = []; /*дані авторизованого юзера*/
-// authUserArray = JSON.parse(localStorage.getItem("authUser"));
-// console.log(authUserArray);
-// document.getElementById("nameUser").innerHTML = `Name :  ${authUserArray.username}`;
-//
-// var localExpense = []; /* список затрат авторизованого юзера*/
-// if (authUserArray.exspense){
-//     localExpense = authUserArray.exspense;
-// }
-// var localIncomes = []; /* список доходів авторизованого юзера*/
-// if (authUserArray.incomes){
-//     localIncomes = authUserArray.incomes;
-// }
-
-document.getElementById("expenseCheck").onclick = function(){
-    var authUserExpense = {};
-    authUserExpense.date = document.getElementById("expenseDate").value;
-    authUserExpense.category = document.getElementById("expenseCategory").value;
-    authUserExpense.amount = document.getElementById("expenseAmount").value;
-    console.log(authUserExpense);
-    if (document.getElementById("expenseDate").value === "" ||
-        document.getElementById("expenseCategory").value === "" ||
-        document.getElementById("expenseAmount").value === ""){
-            alert("Заповніть всі поля!!!");
-    } else {
-        let i = localExpense.length;
-        localExpense[i] = authUserExpense;
-        console.log(localExpense);
-        authUserArray.exspense = localExpense;
-        localStorage.setItem("authUser", JSON.stringify(authUserArray));
-
-        getExpenseAmountDay();
-        getExpenseAmountWeek();
-        getExpenseAmountMonth();
-
-        expense.className = "hidden";
-        mainID.className = "off__hidden";
-    }
-
-};
-document.getElementById("incomesCheck").onclick = function(){
-    var authUserIncomes = {};
-    authUserIncomes.date = document.getElementById("incomesDate").value;
-    authUserIncomes.category = document.getElementById("incomesCategory").value;
-    authUserIncomes.amount = document.getElementById("incomesAmount").value;
-    console.log(authUserIncomes);
-    if (document.getElementById("incomesDate").value === "" ||
-        document.getElementById("incomesCategory").value === "" ||
-        document.getElementById("incomesAmount").value === ""){
-            alert("Заповніть всі поля!!!");
-    }else {
-        let i = localIncomes.length;
-        localIncomes[i] = authUserIncomes;
-        console.log(localIncomes);
-        authUserArray.incomes = localIncomes;
-        localStorage.setItem("authUser", JSON.stringify(authUserArray));
-
-        getIncomesAmountDay();
-        getIncomesAmountWeek();
-        getIncomesAmountMonth();
-
-        incomes.className = "hidden";
-        mainID.className = "off__hidden";
-    }
-
-};
-
-
-document.getElementById("hamburgerOpen").onclick = function () {
-    hamburger.className = "off__hidden";
-};
-document.getElementById("hamburgerOff").onclick = function () {
-    hamburger.className = "hidden";
-};
-
-document.getElementById("addExpense").onclick = function(){
-    expense.className = "off__hidden";
-    mainID.className = "hidden";
-};
-document.getElementById("backInExpanse").onclick = function(){
-    expense.className = "hidden";
-    mainID.className = "off__hidden";
-};
-document.getElementById("openExpenseHistory").onclick = function(){
-
-    // getHistoryExpensePeriod();
-    expenseHistory.className = "off__hidden";
-    mainID.className = "hidden";
-};
-document.getElementById("expenseHistoryDateStart").onchange = function(){
-    getHistoryExpensePeriod();
-};
-document.getElementById("expenseHistoryDateEnd").onchange = function(){
-    getHistoryExpensePeriod();
-};
-document.getElementById("backInExpanseHistory").onclick = function(){
-    expenseHistory.className = "hidden";
-    mainID.className = "off__hidden";
-};
-
-document.getElementById("addIncomes").onclick = function(){
-    incomes.className = "off__hidden";
-    mainID.className = "hidden";
-};
-document.getElementById("backInIncomes").onclick = function(){
-    incomes.className = "hidden";
-    mainID.className = "off__hidden";
-};
-document.getElementById("openIncomesHistory").onclick = function(){
-    // getHistoryIncomesPeriod();
-    incomesHistory.className = "off__hidden";
-    mainID.className = "hidden";
-};
-document.getElementById("incomesHistoryDateStart").onchange = function(){
-    getHistoryIncomesPeriod();
-};
-document.getElementById("incomesHistoryDateEnd").onchange = function(){
-    getHistoryIncomesPeriod();
-};
-document.getElementById("backInIncomesHistory").onclick = function(){
-    incomesHistory.className = "hidden";
-    mainID.className = "off__hidden";
-};
-
-document.getElementById("openBalance").onclick = function(){
-    balance.className = "off__hidden";
-    mainID.className = "hidden";
-};
-document.getElementById("backInBalance").onclick = function(){
-    balance.className = "hidden";
-    mainID.className = "off__hidden";
-};
-
-document.getElementById("expenseDate").valueAsDate = new Date();
-document.getElementById("incomesDate").valueAsDate = new Date();
-document.getElementById("expenseHistoryDateStart").valueAsDate = new Date();
-document.getElementById("expenseHistoryDateEnd").valueAsDate = new Date();
-document.getElementById("incomesHistoryDateStart").valueAsDate = new Date();
-document.getElementById("incomesHistoryDateEnd").valueAsDate = new Date();
-
-document.getElementById("signOut").onclick = function () {
-    searchUser(authUserArray.username);
-    console.log(userArray);
-    localStorage.setItem("users", JSON.stringify(userArray));
-    localStorage.removeItem("authUser");
+if (!localStorage.getItem("authUser")){
     window.location.href = "views/login.html";
-};
-
-
-function getExpenseAmountDay() {
-    let localExpenseDay = [];
-    let day = currentDay();
-    console.log(day);
-    localExpenseDay = searchDay(day, localExpense, localExpenseDay);
-    localExpenseDay = localExpenseDay.filter(String);
-    console.log(localExpenseDay);
-    let count = 0;
-    count = amount(localExpenseDay, count);
-    console.log(count);
-    document.getElementById("amountExpenseDay").innerHTML = `${count}`;
 }
-function getExpenseAmountWeek() {
-    let localExpenseWeek = [];
-    let weekStart = getMonday(new Date());
-    console.log(weekStart);
-    let weekEnd = getSunday(new Date());
-    console.log(weekEnd);
-    localExpenseWeek = searchPeriod(weekStart, weekEnd, localExpense, localExpenseWeek);
-    localExpenseWeek = localExpenseWeek.filter(String);
-    console.log(localExpenseWeek);
-    let count = 0;
-    count = amount(localExpenseWeek, count);
-    console.log(count);
-    document.getElementById("amountExpenseWeek").innerHTML = `${count}`;
-}
-function getExpenseAmountMonth() {
-    let localExpenseMonth = [];
-    let monthStart = getCurrentMonthStart(new Date());
-    let monthEnd = getCurrentMonthEnd(new Date());
-    localExpenseMonth = searchPeriod(monthStart, monthEnd, localExpense, localExpenseMonth);
-    localExpenseMonth = localExpenseMonth.filter(String);
-    console.log(localExpenseMonth);
-    let count = 0;
-    count = amount(localExpenseMonth, count);
-    console.log(count);
-    document.getElementById("amountExpenseMonth").innerHTML = `${count}`;
-}
-function getHistoryExpensePeriod() {
-    let innerBox = document.getElementById("historyExpensePeriod");
-    innerBox.innerHTML = "";
-    let localExpensePeriod = [];
-    let start = document.getElementById("expenseHistoryDateStart").value;
-    let end = document.getElementById("expenseHistoryDateEnd").value;
-    searchPeriod(start, end, localExpense, localExpensePeriod);
-    localExpensePeriod = localExpensePeriod.filter(String);
-    console.log(localExpensePeriod);
-    let food = [];
-    let cafes = [];
-    let relaxation = [];
-    let vehicle = [];
-    let communication = [];
 
-    searchCategory("Food", localExpensePeriod, food);
-    searchCategory("Cafes and restaurants", localExpensePeriod, cafes);
-    searchCategory("Relaxation", localExpensePeriod, relaxation);
-    searchCategory("Vehicle", localExpensePeriod, vehicle);
-    searchCategory("Communication", localExpensePeriod, communication);
-
-    food = food.filter(String);
-    cafes = cafes.filter(String);
-    relaxation = relaxation.filter(String);
-    vehicle = vehicle.filter(String);
-    communication = communication.filter(String);
-
-    let countFood = 0;
-    countFood = amount(food, countFood);
-    let countCafes = 0;
-    countCafes = amount(cafes, countCafes);
-    let countRelaxation = 0;
-    countRelaxation = amount(relaxation, countRelaxation);
-    let countVehicle = 0;
-    countVehicle = amount(vehicle, countVehicle);
-    let countCommunication = 0;
-    countCommunication = amount(communication, countCommunication);
-
-    let countAll = countFood + countCafes + countRelaxation + countVehicle + countCommunication;
-    document.getElementById("amountExpenseHistoryAll").innerHTML = `${countAll}`;
-
-    if (food.length !== 0){
-        innerBox.innerHTML = `<div class="history__item">Food<span>${countFood}</span></div>`;
+$(document).ready(function () {
+    var userArray =[]; /*дані всіх юзерів*/
+    if (localStorage.getItem("users")){
+        userArray = JSON.parse(localStorage.getItem("users"));
+        console.log(userArray);
     }
-    if (cafes.length !== 0){
-        innerBox.innerHTML += `<div class="history__item">Cafes and restaurants<span>${countCafes}</span></div>`;
+
+    var authUserArray = []; /*дані авторизованого юзера*/
+    authUserArray = JSON.parse(localStorage.getItem("authUser"));
+    console.log(authUserArray);
+    $("#nameUser").html(`Name :  ${authUserArray.userfirstname} ${authUserArray.userlastname}`);
+
+
+    var localExpense = []; /* список затрат авторизованого юзера*/
+    if (authUserArray.exspense){
+        localExpense = authUserArray.exspense;
     }
-    if (relaxation.length !== 0){
-        innerBox.innerHTML += `<div class="history__item">Relaxation<span>${countRelaxation}</span></div>`;
+    var localIncomes = []; /* список доходів авторизованого юзера*/
+    if (authUserArray.incomes){
+        localIncomes = authUserArray.incomes;
     }
-    if (vehicle.length !== 0){
-        innerBox.innerHTML += `<div class="history__item">Vehicle<span>${countVehicle}</span></div>`;
-    }
-    if (communication.length !== 0){
-        innerBox.innerHTML += `<div class="history__item">Communication<span>${countCommunication}</span></div>`;
-    }
-}
 
 
-function getIncomesAmountDay() {
-    let localIncomesDay = [];
-    let day = currentDay();
-    console.log(day);
-    localIncomesDay = searchDay(day, localIncomes, localIncomesDay);
-    localIncomesDay = localIncomesDay.filter(String);
-    console.log(localIncomesDay);
-    let count = 0;
-    count = amount(localIncomesDay, count);
-    console.log(count);
-    document.getElementById("amountIncomesDay").innerHTML = `${count}`;
-}
-function getIncomesAmountWeek() {
-    let localIncomesWeek = [];
-    let weekStart = getMonday(new Date());
-    console.log(weekStart);
-    let weekEnd = getSunday(new Date());
-    console.log(weekEnd);
-    localIncomesWeek = searchPeriod(weekStart, weekEnd, localIncomes, localIncomesWeek);
-    localIncomesWeek = localIncomesWeek.filter(String);
-    console.log(localIncomesWeek);
-    let count = 0;
-    count = amount(localIncomesWeek, count);
-    console.log(count);
-    document.getElementById("amountIncomesWeek").innerHTML = `${count}`
-}
-function getIncomesAmountMonth() {
-    let localIncomesMonth = [];
-    let monthStart = getCurrentMonthStart(new Date());
-    let monthEnd = getCurrentMonthEnd(new Date());
-    localIncomesMonth = searchPeriod(monthStart, monthEnd, localIncomes, localIncomesMonth);
-    localIncomesMonth = localIncomesMonth.filter(String);
-    console.log(localIncomesMonth);
-    let count = 0;
-    count = amount(localIncomesMonth, count);
-    console.log(count);
-    document.getElementById("amountIncomesMonth").innerHTML = `${count}`
-}
-function getHistoryIncomesPeriod() {
-    let innerBox = document.getElementById("historyIncomesPeriod");
-    innerBox.innerHTML = "";
-    let localIncomesPeriod = [];
-    let start = document.getElementById("incomesHistoryDateStart").value;
-    let end = document.getElementById("incomesHistoryDateEnd").value;
-    searchPeriod(start, end, localIncomes, localIncomesPeriod);
-    localIncomesPeriod = localIncomesPeriod.filter(String);
-    console.log(localIncomesPeriod);
-    let salary = [];
-    let premium = [];
-    let stipend = [];
+    const mainID = $("#main");
+    const hamburger = $("#hamburger");
+    const expense = $("#expense");
+    const mainExpense = $("#mainExpense");
+    const expenseHistory = $("#expenseHistory");
+    const expenseHistoryMain = $("#expenseHistoryMain");
+    const incomes = $("#incomes");
+    const mainIncomes = $("#mainIncomes");
+    const incomesHistory = $("#incomesHistory");
+    const incomesHistoryMain = $("#incomesHistoryMain");
+    const balance = $("#balance");
 
-    searchCategory("Salary", localIncomesPeriod, salary);
-    searchCategory("Premium", localIncomesPeriod, premium);
-    searchCategory("Stipend", localIncomesPeriod, stipend);
+    let expenseHistoryDateStart = $("#expenseHistoryDateStart");
+    let expenseHistoryDateEnd =  $("#expenseHistoryDateEnd");
+    let expenseHistoryMainDateStart = $("#expenseHistoryMainDateStart");
+    let expenseHistoryMainDateEnd = $("#expenseHistoryMainDateEnd");
+    let incomesHistoryDateStart = $("#incomesHistoryDateStart");
+    let incomesHistoryDateEnd =  $("#incomesHistoryDateEnd");
+    let incomesHistoryMainDateStart = $("#incomesHistoryMainDateStart");
+    let incomesHistoryMainDateEnd = $("#incomesHistoryMainDateEnd");
 
-    salary = salary.filter(String);
-    premium = premium.filter(String);
-    stipend = stipend.filter(String);
+    reloadDate();
 
-    let countSalary = 0;
-    countSalary = amount(salary, countSalary);
-    let countPremium = 0;
-    countPremium = amount(premium, countPremium);
-    let countStipend = 0;
-    countStipend = amount(stipend, countStipend);
+    $("input[type='date']").val(currentDay()); /*Заповнення полів input із type="date" сьогоднішньою датою*/
+    $("input[type='time']").val(currentTime()); /*Заповнення полів input із type="time" поточним часом*/
 
-    let countAll = countSalary + countPremium + countStipend;
-    document.getElementById("amountIncomesHistoryAll").innerHTML = `${countAll}`;
+    $("#hamburgerOpen").on("click", function () {
+       hamburger.show();
+    });
+    $("#hamburgerOff").on("click", function () {
+        hamburger.hide();
+    });
 
-    if (salary.length !== 0){
-        innerBox.innerHTML = `<div class="history__item">Salary<span>${countSalary}</span></div>`;
-    }
-    if (premium.length !== 0){
-        innerBox.innerHTML += `<div class="history__item">Premium<span>${countPremium}</span></div>`;
-    }
-    if (stipend.length !== 0){
-        innerBox.innerHTML += `<div class="history__item">Stipend<span>${countStipend}</span></div>`;
-    }
-}
-
-
-function getAmountBalance() {
-    let countAllExpense = 0;
-    let countAllIncomes = 0;
-    countAllExpense = amount(localExpense, countAllExpense);
-    console.log(countAllExpense);
-    countAllIncomes = amount(localIncomes, countAllIncomes);
-    console.log(countAllIncomes);
-    let balance = countAllIncomes - countAllExpense;
-    document.getElementById("amountBalance").innerHTML = `${balance}`;
-}
-
-function amount(array, count) {
-    for (let i = 0; i < array.length; i++){
-        count += +array[i].amount;
-    }
-    return count;
-}
-
-function getCurrentMonthStart(d) {
-    d = new Date(d);
-    let monthStart = new Date(d.getFullYear(), d.getMonth(), 1);
-    console.log(monthStart);
-    let monthDay = monthStart.getDate();
-    let month = monthStart.getMonth()+1;
-    if (monthDay < 10){monthDay = "0" + monthDay}
-    if (month < 10){month = "0" + month}
-    month = monthStart.getFullYear() + "-" + month + "-" + monthDay;
-    console.log(month);
-    return month;
-}
-function getCurrentMonthEnd(d) {
-    d = new Date(d);
-    let monthEnd = new Date(d.getFullYear(), d.getMonth() + 1, 0);
-    console.log(monthEnd);
-    let monthDay = monthEnd.getDate();
-    let month = monthEnd.getMonth()+1;
-    if (monthDay < 10){monthDay = "0" + monthDay}
-    if (month < 10){month = "0" + month}
-    month = monthEnd.getFullYear() + "-" + month + "-" + monthDay;
-    console.log(month);
-    return month;
-}
-function getMonday(d) { /* пошук першого дня в тижні*/
-    d = new Date(d);
-    let day = d.getDay(),
-        diff = d.getDate() - day + (day === 0 ? -6:1);
-    let week = new Date(d.setDate(diff));
-    let weekDay = week.getDate();
-    let weekMonth = week.getMonth()+1;
-    if (weekDay < 10){weekDay = "0" + weekDay}
-    if (weekMonth < 10){weekMonth = "0" + weekMonth}
-    week = week.getFullYear() + "-" + weekMonth + "-" + weekDay;
-    return week;
-}
-function getSunday(d) {
-    d = new Date(d);
-    let day = d.getDay(),
-        diff = d.getDate() + day + (day === 0 ? -6:1);
-    let week = new Date(d.setDate(diff));
-    let weekDay = week.getDate();
-    let weekMonth = week.getMonth()+1;
-    if (weekDay < 10){weekDay = "0" + weekDay}
-    if (weekMonth < 10){weekMonth = "0" + weekMonth}
-    week = week.getFullYear() + "-" + weekMonth + "-" + weekDay;
-    return week;
-}
-function currentDay() {
-    let currentDay = new Date();
-    let day = currentDay.getDate();
-    let month = currentDay.getMonth() + 1;
-    let year = currentDay.getFullYear();
-    if (month < 10) {
-        month = "0"+month;
-    }
-    currentDay = year + "-" + month + "-" + day;
-    return currentDay;
-}
-
-
-function searchCategory(name, array, newArray) {
-    for (let i = 0; i < array.length; i++){
-        console.log(array[i]);
-        if(array[i].category === name){
-            newArray[i] = array[i];
+    $("#addExpense").on("click", function(){
+        if (window.innerWidth >= 700){
+            expenseHistoryMain.hide();
+            incomesHistoryMain.hide();
+            mainIncomes.hide();
+            mainExpense.removeClass("hidden");
+            mainExpense.hide();
+            mainExpense.slideDown("slow");
+        }else {
+            mainID.hide();
+            expense.show();
         }
-    }
-    return newArray;
-}
-function searchPeriod(start, end, array, newArray) {
-    for (let i = 0; i < array.length; i++){
-        if (array[i].date >= start && array[i].date <= end){
-            newArray[i] = array[i];
-        }
-    }
-    return newArray;
-}
+    });
+    $("#backInExpanse").on("click", function () {
+        reloadDate();
+        expense.hide();
+        mainID.show();
+    });
+    $("#expenseCheck").on("click", function () {
+        var authUserExpense = {};
+        let expenseDate = $("#expenseDate").val();
+        let expenseTime = $("#expenseTime").val();
+        let expenseCategory = $("#expenseCategory").val();
+        let expenseAmount = $("#expenseAmount").val();
+        authUserExpense.date = expenseDate;
+        authUserExpense.time = expenseTime;
+        authUserExpense.category = expenseCategory;
+        authUserExpense.amount = expenseAmount;
 
-function searchDay(day, array, newArray) {
-    for (let i = 0; i < array.length; i++){
-        if (array[i].date === day){
-            newArray[i] = array[i];
-        }
-    }
-    return newArray;
-}
+        if (expenseDate === "" || expenseCategory === "" || expenseAmount === "" || expenseTime === ""){
+            alert("Заповніть всі поля!!!");
+        } else {
+            let i = localExpense.length;
+            localExpense[i] = authUserExpense;
+            console.log(localExpense);
+            authUserArray.exspense = localExpense;
+            localStorage.setItem("authUser", JSON.stringify(authUserArray));
 
-function searchUser (name){
-    for (let i = 0; i < userArray.length; i++){
-        for (let key in userArray[i]){
-            if (name === userArray[i][key] ) {
-                userArray[i] = authUserArray;
+            reloadDate();
+
+            expense.hide();
+            mainID.show();
+        }
+    });
+    $("#exitMainExpense").on("click", function () {
+        mainExpense.slideUp("slow");
+    });
+    $("#expenseMainCheck").on("click", function () {
+        var authUserExpense = {};
+        let expenseMainDate = $("#expenseMainDate").val();
+        let expenseMainTime = $("#expenseMainTime").val();
+        let expenseMainCategory = $("#expenseMainCategory").val();
+        let expenseMainAmount = $("#expenseMainAmount").val();
+        authUserExpense.date = expenseMainDate;
+        authUserExpense.time = expenseMainTime;
+        authUserExpense.category = expenseMainCategory;
+        authUserExpense.amount = expenseMainAmount;
+
+        if (expenseMainDate === "" || expenseMainCategory === "" || expenseMainAmount === "" || expenseMainTime === ""){
+            alert("Заповніть всі поля!!!");
+        } else {
+            let i = localExpense.length;
+            localExpense[i] = authUserExpense;
+            console.log(localExpense);
+            authUserArray.exspense = localExpense;
+            localStorage.setItem("authUser", JSON.stringify(authUserArray));
+
+            reloadDate();
+
+            mainExpense.slideUp("slow");
+        }
+    });
+
+    $("#addIncomes").on("click", function () {
+        if (window.innerWidth >= 700){
+            expenseHistoryMain.hide();
+            incomesHistoryMain.hide();
+            mainExpense.hide();
+            mainIncomes.removeClass("hidden");
+            mainIncomes.hide();
+            mainIncomes.slideDown("slow");
+        }else {
+            mainID.hide();
+            incomes.show();
+        }
+    });
+    $("#backInIncomes").on("click", function () {
+        reloadDate();
+        incomes.hide();
+        mainID.show();
+    });
+    $("#incomesCheck").on("click", function () {
+        var authUserIncomes = {};
+        let incomesDate = $("#incomesDate").val();
+        let incomesTime = $("#incomesTime").val();
+        let incomesCategory = $("#incomesCategory").val();
+        let incomesAmount = $("#incomesAmount").val();
+
+        authUserIncomes.date = incomesDate;
+        authUserIncomes.time = incomesTime;
+        authUserIncomes.category = incomesCategory;
+        authUserIncomes.amount = incomesAmount;
+
+        if (incomesDate === "" || incomesCategory === "" || incomesAmount === "" || incomesTime === ""){
+            alert("Заповніть всі поля!!!");
+        } else {
+            let i = localIncomes.length;
+            localIncomes[i] = authUserIncomes;
+            console.log(localIncomes);
+            authUserArray.incomes = localIncomes;
+            localStorage.setItem("authUser", JSON.stringify(authUserArray));
+
+            reloadDate();
+
+            incomes.hide();
+            mainID.show();
+        }
+    });
+    $("#exitMainIncomes").on("click", function () {
+        mainIncomes.slideUp("slow");
+    });
+    $("#incomesMainCheck").on("click", function () {
+        var authUserIncomes = {};
+        let incomesMainDate = $("#incomesMainDate").val();
+        let incomesMainTime = $("#incomesMainTime").val();
+        let incomesMainCategory = $("#incomesMainCategory").val();
+        let incomesMainAmount = $("#incomesMainAmount").val();
+        authUserIncomes.date = incomesMainDate;
+        authUserIncomes.time = incomesMainTime;
+        authUserIncomes.category = incomesMainCategory;
+        authUserIncomes.amount = incomesMainAmount;
+
+        if (incomesMainDate === "" || incomesMainCategory === "" || incomesMainAmount === "" || incomesMainTime === ""){
+            alert("Заповніть всі поля!!!");
+        } else {
+            let i = localIncomes.length;
+            localIncomes[i] = authUserIncomes;
+            console.log(localIncomes);
+            authUserArray.incomes = localIncomes;
+            localStorage.setItem("authUser", JSON.stringify(authUserArray));
+
+            reloadDate();
+
+            mainIncomes.slideUp("slow");
+        }
+    });
+
+    $("#openExpenseHistory").on("click", function () {
+        if (window.innerWidth >= 700){
+            incomesHistoryMain.hide();
+            mainExpense.hide();
+            mainIncomes.hide();
+            expenseHistoryMain.removeClass("hidden");
+            expenseHistoryMain.hide();
+            expenseHistoryMain.slideDown("slow");
+            reloadExpenseMainDate();
+        }else {
+            reloadExpenseDate();
+            mainID.hide();
+            expenseHistory.show();
+        }
+    });
+    $("#backInExpanseHistory").on("click", function () {
+        reloadDate();
+        expenseHistory.hide();
+        mainID.show();
+    });
+    $("#exitMainExpenseHistory").on("click", function () {
+        expenseHistoryMain.slideUp("slow");
+    });
+    expenseHistoryDateStart.on("change", function () {
+        reloadExpenseDate();
+    });
+    expenseHistoryDateEnd.on("change", function () {
+        reloadExpenseDate();
+    });
+    expenseHistoryMainDateStart.on("change", function (){
+        reloadExpenseMainDate();
+    });
+    expenseHistoryMainDateEnd.on("change", function () {
+        reloadExpenseMainDate();
+    });
+
+    $("#openIncomesHistory").on("click", function () {
+        if (window.innerWidth >= 700){
+            expenseHistoryMain.hide();
+            mainExpense.hide();
+            mainIncomes.hide();
+            incomesHistoryMain.removeClass("hidden");
+            incomesHistoryMain.hide();
+            incomesHistoryMain.slideDown("slow");
+            reloadIncomesMainDate();
+        }else {
+            reloadIncomesDate();
+            mainID.hide();
+            incomesHistory.show();
+        }
+    });
+    $("#backInIncomesHistory").on("click", function () {
+        reloadDate();
+        incomesHistory.hide();
+        mainID.show();
+    });
+    $("#exitMainIncomesHistory").on("click", function () {
+        incomesHistoryMain.slideUp("slow");
+    });
+    incomesHistoryDateStart.on("change", function () {
+        reloadIncomesDate();
+    });
+    incomesHistoryDateEnd.on("change", function () {
+        reloadIncomesDate();
+    });
+    incomesHistoryMainDateStart.on("change", function (){
+        reloadIncomesMainDate();
+    });
+    incomesHistoryMainDateEnd.on("change", function () {
+        reloadIncomesMainDate();
+    });
+
+
+
+
+    function getExpenseAmountDay() {
+        let localExpenseDay = [];
+        let day = currentDay();
+        localExpenseDay = searchDay(day, localExpense, localExpenseDay);
+        localExpenseDay = localExpenseDay.filter(String);
+        let count = 0;
+        count = amount(localExpenseDay, count);
+        $("#amountExpenseDay").html(`${count}`);
+    }
+    function getExpenseAmountWeek() {
+        let localExpenseWeek = [];
+        let weekStart = getMonday(new Date());
+        let weekEnd = getSunday(new Date());
+        localExpenseWeek = searchPeriod(weekStart, weekEnd, localExpense, localExpenseWeek);
+        localExpenseWeek = localExpenseWeek.filter(String);
+        let count = 0;
+        count = amount(localExpenseWeek, count);
+        $("#amountExpenseWeek").html(`${count}`);
+    }
+    function getExpenseAmountMonth() {
+        let localExpenseMonth = [];
+        let monthStart = getCurrentMonthStart(new Date());
+        let monthEnd = getCurrentMonthEnd(new Date());
+        localExpenseMonth = searchPeriod(monthStart, monthEnd, localExpense, localExpenseMonth);
+        localExpenseMonth = localExpenseMonth.filter(String);
+        let count = 0;
+        count = amount(localExpenseMonth, count);
+        $("#amountExpenseMonth").html(`${count}`);
+    }
+    function getHistoryExpensePeriod(innerBox, start, end, amountAll) {
+        innerBox.html("");
+        let localExpensePeriod = [];
+        searchPeriod(start, end, localExpense, localExpensePeriod);
+        localExpensePeriod = localExpensePeriod.filter(String);
+        console.log(localExpensePeriod);
+        let food = [];
+        let cafes = [];
+        let relaxation = [];
+        let vehicle = [];
+        let communication = [];
+
+        searchCategory("Food", localExpensePeriod, food);
+        searchCategory("Cafes and restaurants", localExpensePeriod, cafes);
+        searchCategory("Relaxation", localExpensePeriod, relaxation);
+        searchCategory("Vehicle", localExpensePeriod, vehicle);
+        searchCategory("Communication", localExpensePeriod, communication);
+
+        food = food.filter(String);
+        cafes = cafes.filter(String);
+        relaxation = relaxation.filter(String);
+        vehicle = vehicle.filter(String);
+        communication = communication.filter(String);
+
+        let countFood = 0;
+        countFood = amount(food, countFood);
+        let countCafes = 0;
+        countCafes = amount(cafes, countCafes);
+        let countRelaxation = 0;
+        countRelaxation = amount(relaxation, countRelaxation);
+        let countVehicle = 0;
+        countVehicle = amount(vehicle, countVehicle);
+        let countCommunication = 0;
+        countCommunication = amount(communication, countCommunication);
+
+        let countAll = countFood + countCafes + countRelaxation + countVehicle + countCommunication;
+        amountAll.html(`${countAll}`);
+
+        if (food.length !== 0){
+            innerBox.html(`<div id="food" class="history__item">Food<span>${countFood}</span></div>
+                            <div id="itemDetailFood" class="hidden detail__line"></div>`);
+        }
+        if (cafes.length !== 0){
+            innerBox.append(`<div id="cafes" class="history__item">Cafes and restaurants<span>${countCafes}</span></div>
+                                <div id="itemDetailCafes" class="hidden detail__line"></div>`);
+        }
+        if (relaxation.length !== 0){
+            innerBox.append(`<div id="relaxation" class="history__item">Relaxation<span>${countRelaxation}</span></div>
+                            <div id="itemDetailRelaxation" class="hidden detail__line"></div>`);
+        }
+        if (vehicle.length !== 0){
+            innerBox.append(`<div id="vehicle" class="history__item">Vehicle<span>${countVehicle}</span></div>
+                                <div id="itemDetailVehicle" class="hidden detail__line"></div>`);
+        }
+        if (communication.length !== 0){
+            innerBox.append(`<div id="communication" class="history__item">Communication<span>${countCommunication}</span></div>
+                                <div id="itemDetailCommunication" class="hidden detail__line"></div>`);
+        }
+        $("#food").on("click", function () {
+            openDetailItem($("#itemDetailFood"), food, "food");
+            let arrBtn = $("button[id^='delfood']");
+            console.log(arrBtn);
+            arrBtn.on("click", function () {
+                searchDelExpenseBtn(arrBtn, this, food, localExpense);
+            });
+
+        });
+        $("#cafes").on("click", function () {
+            openDetailItem($("#itemDetailCafes"), cafes, "cafes");
+            let arrBtn = $("button[id^='delcafes']");
+            console.log(arrBtn);
+            arrBtn.on("click", function () {
+                searchDelExpenseBtn(arrBtn, this, cafes, localExpense);
+            });
+        });
+        $("#relaxation").on("click", function () {
+            openDetailItem($("#itemDetailRelaxation"), relaxation, "relaxation");
+            let arrBtn = $("button[id^='delrelaxation']");
+            console.log(arrBtn);
+            arrBtn.on("click", function () {
+                searchDelExpenseBtn(arrBtn, this, relaxation, localExpense);
+            });
+        });
+        $("#vehicle").on("click", function () {
+            openDetailItem($("#itemDetailVehicle"), vehicle, "vehicle");
+            let arrBtn = $("button[id^='delvehicle']");
+            console.log(arrBtn);
+            arrBtn.on("click", function () {
+                searchDelExpenseBtn(arrBtn, this, vehicle, localExpense);
+            });
+        });
+        $("#communication").on("click", function () {
+            openDetailItem($("#itemDetailCommunication"), communication, "communication");
+            let arrBtn = $("button[id^='delcommunication']");
+            console.log(arrBtn);
+            arrBtn.on("click", function () {
+                searchDelExpenseBtn(arrBtn, this, communication, localExpense);
+            });
+        });
+    }
+
+    function openDetailItem(itemIDDetailBox, arrayCateg, nameCateg) {
+        console.log(arrayCateg);
+        itemIDDetailBox.html("");
+        for (let i = 0; i < arrayCateg.length; i++){
+            itemIDDetailBox.append(`<div id="${i}" class="item__detail">
+                                            <div class="item__wrapper">
+                                                <div>${arrayCateg[i].date}  ${arrayCateg[i].time}</div>
+                                                <span>${arrayCateg[i].amount}</span>
+                                                <button type="button" id="del${nameCateg}${i}" class="btn__delete"><i class="fas fa-minus"></i></button>
+                                                </div>
+                                       </div>`);
+        }
+            itemIDDetailBox.slideDown("slow");
+    }
+    function searchDelExpenseBtn(arrayBtn, thisBtn, arrayCateg, globalArr) {
+        console.log(thisBtn);
+        console.log(arrayCateg);
+        for (let i = 0; i < arrayBtn.length; i++){
+            if(arrayBtn[i].id === thisBtn.id){
+                console.log(arrayCateg[i]);
+                searchDelExpenseItem(arrayCateg[i].date, arrayCateg[i].time, arrayCateg[i].category,
+                    arrayCateg[i].amount, globalArr);
+            }
+        } console.log(arrayCateg);
+    }
+    function searchDelIncomesBtn(arrayBtn, thisBtn, arrayCateg, globalArr) {
+        console.log(thisBtn);
+        console.log(arrayCateg);
+        for (let i = 0; i < arrayBtn.length; i++){
+            if(arrayBtn[i].id === thisBtn.id){
+                console.log(arrayCateg[i]);
+                searchDelIncomesItem(arrayCateg[i].date, arrayCateg[i].time, arrayCateg[i].category,
+                    arrayCateg[i].amount, globalArr);
+            }
+        } console.log(arrayCateg);
+    }
+    function searchDelExpenseItem(date, time, name, amount, array) {
+        for (let i = 0; i < array.length; i++){
+            if (array[i].date === date && array[i].time === time && array[i].category === name && array[i].amount === amount){
+                let index = array.indexOf(array[i]);
+                console.log(index);
+                array.splice(index, 1);
+                authUserArray.exspense = array;
+                localStorage.setItem("authUser", JSON.stringify(authUserArray));
+                currentExpenseWindow();
             }
         }
     }
-}
+    function searchDelIncomesItem(date, time, name, amount, array) {
+        for (let i = 0; i < array.length; i++){
+            if (array[i].date === date && array[i].time === time && array[i].category === name && array[i].amount === amount){
+                let index = array.indexOf(array[i]);
+                console.log(index);
+                array.splice(index, 1);
+                authUserArray.incomes = array;
+                localStorage.setItem("authUser", JSON.stringify(authUserArray));
+                currentIncomesWindow();
+            }
+        }
+    }
+
+
+    function getIncomesAmountDay() {
+        let localIncomesDay = [];
+        let day = currentDay();
+        localIncomesDay = searchDay(day, localIncomes, localIncomesDay);
+        localIncomesDay = localIncomesDay.filter(String);
+        let count = 0;
+        count = amount(localIncomesDay, count);
+        $("#amountIncomesDay").html(`${count}`);
+    }
+    function getIncomesAmountWeek() {
+        let localIncomesWeek = [];
+        let weekStart = getMonday(new Date());
+        let weekEnd = getSunday(new Date());
+        localIncomesWeek = searchPeriod(weekStart, weekEnd, localIncomes, localIncomesWeek);
+        localIncomesWeek = localIncomesWeek.filter(String);
+        let count = 0;
+        count = amount(localIncomesWeek, count);
+        $("#amountIncomesWeek").html(`${count}`);
+    }
+    function getIncomesAmountMonth() {
+        let localIncomesMonth = [];
+        let monthStart = getCurrentMonthStart(new Date());
+        let monthEnd = getCurrentMonthEnd(new Date());
+        localIncomesMonth = searchPeriod(monthStart, monthEnd, localIncomes, localIncomesMonth);
+        localIncomesMonth = localIncomesMonth.filter(String);
+        let count = 0;
+        count = amount(localIncomesMonth, count);
+        $("#amountIncomesMonth").html(`${count}`);
+    }
+    function getHistoryIncomesPeriod(innerBox, start, end, amountAll) {
+        innerBox.html("");
+        let localIncomesPeriod = [];
+        searchPeriod(start, end, localIncomes, localIncomesPeriod);
+        localIncomesPeriod = localIncomesPeriod.filter(String);
+        console.log(localIncomesPeriod);
+        let salary = [];
+        let premium = [];
+        let stipend = [];
+
+        searchCategory("Salary", localIncomesPeriod, salary);
+        searchCategory("Premium", localIncomesPeriod, premium);
+        searchCategory("Stipend", localIncomesPeriod, stipend);
+
+        salary = salary.filter(String);
+        premium = premium.filter(String);
+        stipend = stipend.filter(String);
+
+        let countSalary = 0;
+        countSalary = amount(salary, countSalary);
+        let countPremium = 0;
+        countPremium = amount(premium, countPremium);
+        let countStipend = 0;
+        countStipend = amount(stipend, countStipend);
+
+        let countAll = countSalary + countPremium + countStipend;
+        amountAll.html(`${countAll}`);
+
+        if (salary.length !== 0){
+            innerBox.html(`<div id="salary" class="history__item">Salary<span>${countSalary}</span></div>
+                            <div id="itemDetailSalary" class="hidden detail__line"></div>`);
+        }
+        if (premium.length !== 0){
+            innerBox.append(`<div id="premium" class="history__item">Premium<span>${countPremium}</span></div>
+                                <div id="itemDetailPremium" class="hidden detail__line"></div>`);
+        }
+        if (stipend.length !== 0){
+            innerBox.append(`<div id="stipend" class="history__item">Stipend<span>${countStipend}</span></div>
+                            <div id="itemDetailStipend" class="hidden detail__line"></div>`);
+        }
+
+        $("#salary").on("click", function () {
+            openDetailItem($("#itemDetailSalary"), salary, "salary");
+            let arrBtn = $("button[id^='delsalary']");
+            console.log(arrBtn);
+            arrBtn.on("click", function () {
+                searchDelIncomesBtn(arrBtn, this, salary, localIncomes);
+            });
+
+        });
+        $("#premium").on("click", function () {
+            openDetailItem($("#itemDetailPremium"), premium, "premium");
+            let arrBtn = $("button[id^='delpremium']");
+            console.log(arrBtn);
+            arrBtn.on("click", function () {
+                searchDelIncomesBtn(arrBtn, this, premium, localIncomes);
+            });
+        });
+        $("#stipend").on("click", function () {
+            openDetailItem($("#itemDetailStipend"), stipend, "stipend");
+            let arrBtn = $("button[id^='delstipend']");
+            console.log(arrBtn);
+            arrBtn.on("click", function () {
+                searchDelIncomesBtn(arrBtn, this, stipend, localIncomes);
+            });
+        });
+    }
+
+    function getAmountBalance() {
+        let countAllExpense = 0;
+        let countAllIncomes = 0;
+        countAllExpense = amount(localExpense, countAllExpense);
+        countAllIncomes = amount(localIncomes, countAllIncomes);
+        let balance = countAllIncomes - countAllExpense;
+        $("#amountBalance").html(`${balance}`);
+    }
+
+
+    function amount(array, count) {
+        for (let i = 0; i < array.length; i++){
+            count += +array[i].amount;
+        }
+        return count;
+    }
+
+    function getCurrentMonthStart(d) {
+        d = new Date(d);
+        let monthStart = new Date(d.getFullYear(), d.getMonth(), 1);
+        let monthDay = monthStart.getDate();
+        let month = monthStart.getMonth()+1;
+        if (monthDay < 10){monthDay = "0" + monthDay}
+        if (month < 10){month = "0" + month}
+        month = monthStart.getFullYear() + "-" + month + "-" + monthDay;
+        return month;
+    }
+    function getCurrentMonthEnd(d) {
+        d = new Date(d);
+        let monthEnd = new Date(d.getFullYear(), d.getMonth() + 1, 0);
+        let monthDay = monthEnd.getDate();
+        let month = monthEnd.getMonth()+1;
+        if (monthDay < 10){monthDay = "0" + monthDay}
+        if (month < 10){month = "0" + month}
+        month = monthEnd.getFullYear() + "-" + month + "-" + monthDay;
+        return month;
+    }
+    function getMonday(d) { /* пошук першого дня в тижні*/
+        d = new Date(d);
+        let day = d.getDay(),
+            diff = d.getDate() - day + (day === 0 ? -6:1);
+        let week = new Date(d.setDate(diff));
+        let weekDay = week.getDate();
+        let weekMonth = week.getMonth()+1;
+        if (weekDay < 10){weekDay = "0" + weekDay}
+        if (weekMonth < 10){weekMonth = "0" + weekMonth}
+        week = week.getFullYear() + "-" + weekMonth + "-" + weekDay;
+        return week;
+    }
+    function getSunday(d) {
+        d = new Date(d);
+        let day = d.getDay(),
+            diff = d.getDate() + day + (day === 0 ? -6:1);
+        let week = new Date(d.setDate(diff));
+        let weekDay = week.getDate();
+        let weekMonth = week.getMonth()+1;
+        if (weekDay < 10){weekDay = "0" + weekDay}
+        if (weekMonth < 10){weekMonth = "0" + weekMonth}
+        week = week.getFullYear() + "-" + weekMonth + "-" + weekDay;
+        return week;
+    }
+    function currentDay() {
+        let currentDay = new Date();
+        let day = currentDay.getDate();
+        let month = currentDay.getMonth() + 1;
+        let year = currentDay.getFullYear();
+        if (month < 10) {
+            month = "0"+month;
+        }
+        currentDay = year + "-" + month + "-" + day;
+        return currentDay;
+    }
+    function currentTime() {
+        let currentTime = new Date();
+        let hour = currentTime.getHours();
+        let minutes = currentTime.getMinutes();
+        if (hour < 10){
+            hour = "0"+ hour;
+        }
+        if(minutes < 10){
+            minutes = "0"+ minutes;
+        }
+        currentTime = hour + ":" + minutes;
+        return currentTime
+    }
+
+
+
+    function searchCategory(name, array, newArray) {
+        for (let i = 0; i < array.length; i++){
+            if(array[i].category === name){
+                newArray[i] = array[i];
+            }
+        }
+        return newArray;
+    }
+    function searchPeriod(start, end, array, newArray) {
+        for (let i = 0; i < array.length; i++){
+            if (array[i].date >= start && array[i].date <= end){
+                newArray[i] = array[i];
+            }
+        }
+        return newArray;
+    }
+    function searchDay(day, array, newArray) {
+        for (let i = 0; i < array.length; i++){
+            if (array[i].date === day){
+                newArray[i] = array[i];
+            }
+        }
+        return newArray;
+    }
+
+    function searchUser (email){
+        for (let i = 0; i < userArray.length; i++){
+                if (email === userArray[i].useremail) {
+                    userArray[i] = authUserArray;
+                }
+        }
+    }
+
+    function currentExpenseWindow() {
+        if (window.innerWidth >= 700){
+            reloadDate();
+            reloadExpenseMainDate();
+        }else {
+            reloadExpenseDate();
+        }
+    }
+    function currentIncomesWindow() {
+        if (window.innerWidth >= 700){
+            reloadDate();
+            reloadIncomesMainDate();
+        }else {
+            reloadIncomesDate();
+        }
+    }
+
+    function reloadExpenseMainDate() {
+        getHistoryExpensePeriod($("#historyExpenseMainPeriod"), expenseHistoryMainDateStart.val(),
+            expenseHistoryMainDateEnd.val(), $("#amountExpenseHistoryMainAll"));
+    }
+    function reloadExpenseDate() {
+        getHistoryExpensePeriod($("#historyExpensePeriod"), expenseHistoryDateStart.val(),
+            expenseHistoryDateEnd.val(), $("#amountExpenseHistoryAll"));
+    }
+    function reloadIncomesMainDate() {
+        getHistoryIncomesPeriod($("#historyIncomesMainPeriod"), incomesHistoryMainDateStart.val(),
+            incomesHistoryMainDateEnd.val(), $("#amountIncomesHistoryMainAll"));
+    }
+    function reloadIncomesDate() {
+        getHistoryIncomesPeriod($("#historyIncomesPeriod"), incomesHistoryDateStart.val(),
+            incomesHistoryDateEnd.val(), $("#amountIncomesHistoryAll"));
+    }
+    function reloadDate() {
+        getExpenseAmountDay(); /*вивід суми витрат за день*/
+        getExpenseAmountWeek(); /*вивід суми витрат за тиждень*/
+        getExpenseAmountMonth(); /*вивід суми витрат за Місяць*/
+
+        getIncomesAmountDay(); /*вивід суми доходів за день*/
+        getIncomesAmountWeek(); /*вивід суми доходів за тиждень*/
+        getIncomesAmountMonth(); /*вивід суми доходів за Місяць*/
+
+        getAmountBalance(); /* вивід поточного балансу */
+    }
+});
+
+
+
+// document.getElementById("openBalance").onclick = function(){
+//     balance.className = "off__hidden";
+//     mainID.className = "hidden";
+// };
+// document.getElementById("backInBalance").onclick = function(){
+//     balance.className = "hidden";
+//     mainID.className = "off__hidden";
+// };
+//
+//
+//
+// document.getElementById("signOut").onclick = function () {
+//     searchUser(authUserArray.username);
+//     console.log(userArray);
+//     localStorage.setItem("users", JSON.stringify(userArray));
+//     localStorage.removeItem("authUser");
+//     window.location.href = "views/login.html";
+// };
+
+

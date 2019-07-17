@@ -36,16 +36,19 @@
             <button type="button" class="btn__header" id="expenseCheck"><i class="fas fa-check"></i></button>
         </div>
     </div>
-
     <div class="main__expansion">
             <form action="#" class="input__wrapper">
                 <div class="input__box">
                     <label for="expenseDate">Date</label>
-                        <input type="date" name="calendar" id="expenseDate" class="input__default">
+                    <div class="date__wrapper">
+                        <input type="date" id="expenseDate" class="input__default">
+                        <input type="time" id="expenseTime" class="input__default">
+                    </div>
+
                 </div>
                 <div class="input__box">
                     <label for="expenseCategory">Category</label>
-                        <select name="Category" id="expenseCategory" class="input__default">
+                        <select id="expenseCategory" class="input__default">
                             <option >Food</option>
                             <option >Cafes and restaurants</option>
                             <option >Relaxation</option>
@@ -55,7 +58,7 @@
                 </div>
                 <div class="input__box">
                     <label for="expenseAmount">Amount </label>
-                        <input type="number" name="amountExpense" id="expenseAmount" class="input__default" placeholder="Enter sum">
+                        <input type="number" id="expenseAmount" class="input__default" placeholder="Enter sum">
                 </div>
             </form>
         </div>
@@ -69,17 +72,18 @@
             <button type="button" class="btn__header" id="incomesCheck"><i class="fas fa-check"></i></button>
         </div>
     </div>
-
     <div class="main__expansion">
         <form action="#" class="input__wrapper">
             <div class="input__box">
                 <label for="incomesDate">Date</label>
-                <input type="date" name="calendar" id="incomesDate" class="input__default">
-
+                <div class="date__wrapper">
+                    <input type="date" id="incomesDate" class="input__default">
+                    <input type="time" id="incomesTime" class="input__default">
+                </div>
             </div>
             <div class="input__box">
                 <label for="incomesCategory">Category</label>
-                <select name="Category" id="incomesCategory" class="input__default">
+                <select id="incomesCategory" class="input__default">
                     <option>Salary</option>
                     <option>Premium</option>
                     <option>Stipend</option>
@@ -87,10 +91,9 @@
             </div>
             <div class="input__box">
                 <label for="incomesAmount">Amount</label>
-                <input type="number" name="amountIncomes" id="incomesAmount" class="input__default" placeholder="Enter sum">
+                <input type="number" id="incomesAmount" class="input__default" placeholder="Enter sum">
             </div>
         </form>
-
     </div>
 </div>
 <!-- Expense history -->
@@ -151,16 +154,16 @@
 </div>
 <!-- MAIN -->
 <div id="main" class="off__hidden">
-<header class="header">
-    <div class="header__wrapper">
-        <button type="button" class="btn__header" id="hamburgerOpen"><i class="fas fa-bars"></i></button>
-        Money Tracker
-        <button type="button" class="btn__header" id="signOut"><i class="fas fa-sign-out-alt"></i></button>
-    </div>
-</header>
+    <header class="header">
+        <div class="header__wrapper">
+            <button type="button" class="btn__header" id="hamburgerOpen"><i class="fas fa-bars"></i></button>
+            Money Tracker
+            <button type="button" class="btn__header" id="signOut"><i class="fas fa-sign-out-alt"></i></button>
+        </div>
+    </header>
 
-<div class="main__wrapper">
-    <div class="main__expansion">
+    <div class="main__wrapper">
+        <div class="main__expansion">
         <div class="name__section">Expenses</div>
         <div class="period__wrapper">
             <div class="currency">UAH</div>
@@ -174,9 +177,8 @@
                 <button type="button" class="main__btn" id="openExpenseHistory"><i class="fas fa-history"></i></button>
             </div>
         </div>
-
     </div>
-    <div class="main__expansion">
+        <div class="main__expansion">
         <div class="name__section">Incomes</div>
         <div class="period__wrapper">
             <div class="currency">UAH</div>
@@ -191,7 +193,7 @@
             </div>
         </div>
     </div>
-    <div class="main__expansion">
+        <div class="main__expansion">
         <div class="name__section">Balance</div>
         <div class="period__wrapper">
             <div class="currency">UAH</div>
@@ -201,12 +203,106 @@
             <button type="button" class="main__btn" id="openBalance"><i class="fas fa-ellipsis-h"></i></button>
         </div>
     </div>
+    </div>
+    <!--Main Expense-->
+    <div id="mainExpense" class="hidden">
+        <div class="main__box">
+            <div class="main__form__wrapper">
+                <form action="#" class="input__wrapper">
+                    <div class="input__box">
+                        <label for="expenseMainDate">Date</label>
+                        <div class="date__wrapper">
+                            <input type="date" id="expenseMainDate" class="input__default">
+                            <input type="time" id="expenseMainTime" class="input__default">
+                        </div>
+                    </div>
+                    <div class="input__box">
+                        <label for="expenseMainCategory">Category</label>
+                        <select id="expenseMainCategory" class="input__default">
+                            <option >Food</option>
+                            <option >Cafes and restaurants</option>
+                            <option >Relaxation</option>
+                            <option >Vehicle</option>
+                            <option >Communication</option>
+                        </select>
+                    </div>
+                    <div class="input__box">
+                        <label for="expenseMainAmount">Amount </label>
+                        <input type="number" id="expenseMainAmount" class="input__default" placeholder="Enter sum">
+                    </div>
+                </form>
+            </div>
+            <div class="btn__group__main">
+                <button type="button" class="main__btn__exit" id="exitMainExpense"><i class="far fa-times-circle"></i></button>
+                <button type="button" class="main__btn" id="expenseMainCheck"><i class="fas fa-check"></i></button>
+            </div>
+        </div>
+    </div>
+    <!--Main Incomes-->
+    <div id="mainIncomes" class="hidden">
+        <div class="main__box">
+            <div class="main__form__wrapper">
+                <form action="#" class="input__wrapper">
+                    <div class="input__box">
+                        <label for="incomesMainDate">Date</label>
+                        <div class="date__wrapper">
+                            <input type="date" id="incomesMainDate" class="input__default">
+                            <input type="time" id="incomesMainTime" class="input__default">
+                        </div>
+                    </div>
+                    <div class="input__box">
+                        <label for="incomesMainCategory">Category</label>
+                        <select id="incomesMainCategory" class="input__default">
+                            <option>Salary</option>
+                            <option>Premium</option>
+                            <option>Stipend</option>
+                        </select>
+                    </div>
+                    <div class="input__box">
+                        <label for="incomesMainAmount">Amount </label>
+                        <input type="number" id="incomesMainAmount" class="input__default" placeholder="Enter sum">
+                    </div>
+                </form>
+            </div>
+            <div class="btn__group__main">
+                <button type="button" class="main__btn__exit" id="exitMainIncomes"><i class="far fa-times-circle"></i></button>
+                <button type="button" class="main__btn" id="incomesMainCheck"><i class="fas fa-check"></i></button>
+            </div>
+        </div>
+    </div>
+    <!--Main Expense History-->
+    <div id="expenseHistoryMain" class="hidden">
+        <div class="main__history__box">
+            <form action="#" class="history__period">
+                <input type="date" id="expenseHistoryMainDateStart" class="history__input"> -
+                <input type="date" id="expenseHistoryMainDateEnd" class="history__input">
+            </form>
+            <div class="history__all">All:<span id="amountExpenseHistoryMainAll">0</span></div>
+            <button type="button" class="btn__history__exit" id="exitMainExpenseHistory"><i class="far fa-times-circle"></i></button>
+            <div id="historyExpenseMainPeriod">
+
+            </div>
+        </div>
+    </div>
+    <!--Main Incomes History-->
+    <div id="incomesHistoryMain" class="hidden">
+        <div class="main__history__box">
+            <form action="#" class="history__period">
+                <input type="date" id="incomesHistoryMainDateStart" class="history__input"> -
+                <input type="date" id="incomesHistoryMainDateEnd" class="history__input">
+            </form>
+            <div class="history__all">All:<span id="amountIncomesHistoryMainAll">0</span></div>
+            <button type="button" class="btn__history__exit" id="exitMainIncomesHistory"><i class="far fa-times-circle"></i></button>
+            <div id="historyIncomesMainPeriod">
+
+            </div>
+        </div>
+    </div>
 </div>
-</div>
 
 
 
-
+<script src="libs/jquery-3.4.1.min.js"></script>
 <script rel="script" type="application/javascript" src="js/indexJS.js"></script>
 <script defer src="fontawesome/all.min.js"></script>
 </body>
