@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styleLogInAndSignIn.css">
+    <link rel="stylesheet" href="../fontawesome/all.min.css">
+    <title>Sign In</title>
+</head>
+<body>
+<div class="form__wrapper">
+    <div class="logo">
+        <img src="../img/logo.png" alt="Logo Money Tracker">
+    </div>
+    <div class="user__auth__form">
+        <form>
+            <div class="input__group ">
+                <span id="userCheck" class="hidden"></span>
+                <label for="userEmail" >
+                    <span class="ic"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form__input" id="userEmail" placeholder="E-mail" autocomplete="off">
+                </label>
+            </div>
+            <div class="input__group">
+                <label for="userPassword" >
+                    <span class="ic"><i class="fas fa-lock"></i></span>
+                    <input type="password" class="form__input" id="userPassword" placeholder="Password">
+                </label>
+            </div>
+            <button type="button" class="btn btn__default full__width" id="sign-in" >Sign in</button>
+            <button type="button" class="btn btn__sign full__width" id="sign-up" >Sign up</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="../libs/jquery-3.4.1.min.js"></script>
+<script rel="script" type="application/javascript" src="../js/logInJS.js"></script>
+<script defer src="../fontawesome/all.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styleLogInAndSignIn.css">
+    <link rel="stylesheet" href="../fontawesome/all.min.css">
+    <title>Sign Up</title>
+</head>
+<body>
+<div class="form__wrapper">
+    <div class="logo">
+        <img src="../img/logo.png" alt="Logo Money Tracker">
+    </div>
+    <div class="user__auth__form">
+        <form>
+            <div class="input__group__sign">
+                <input type="text" class="form__input" id="userFirstName" placeholder="First name" autofocus autocomplete="off">
+            </div>
+            <div class="input__group__sign">
+                <input type="text"  class="form__input" id="userLastName" placeholder="Last name" autocomplete="off">
+            </div>
+            <div class="input__group__sign">
+                <span id="passwordCheck" class="hidden"></span>
+                <label for="userPassword" >
+                    <input type="password" class="form__input" id="userPassword" placeholder="Password">
+                    <span id="iconErrorPswd" class="hidden"><i class="fas fa-times-circle"></i></span>
+                </label>
+            </div>
+            <div class="input__group__sign">
+                <span id="emailCheck" class="hidden"></span>
+                <label for="userEmail">
+                    <span id="iconErrorEmail" class="hidden"><i class="fas fa-times-circle"></i></span>
+                    <input type="email" class="form__input" id="userEmail" placeholder="Yourml@email.com" autocomplete="off">
+                </label>
+            </div>
+            <button type="button" class="btn btn__sign full__width" id="sign-in" >Sign up</button>
+        </form>
+    </div>
+</div>
+
+<script src="../libs/jquery-3.4.1.min.js"></script>
+<script rel="script" type="application/javascript" src="../js/signInJS.js"></script>
+<script defer src="../fontawesome/all.min.js"></script>
+
+</body>
+</html>

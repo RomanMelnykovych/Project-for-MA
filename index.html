@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/indexStyle.css">
+    <link rel="stylesheet" href="fontawesome/all.min.css">
+    <title>Money Tracker</title>
+</head>
+<body>
+
+<!-- Expense -->
+<div id="expense" class="hidden">
+    <div class="header">
+        <div class="header__wrapper">
+            <button type="button" class="btn__header" id="backInExpanse"><i class="fas fa-arrow-left"></i></button>
+            Expense
+            <button type="button" class="btn__header" id="expenseCheck"><i class="fas fa-check"></i></button>
+        </div>
+    </div>
+    <div class="main__expansion">
+            <form action="#" class="input__wrapper">
+                <div class="input__box">
+                    <label for="expenseDate">Date</label>
+                    <div class="date__wrapper">
+                        <input type="date" id="expenseDate" class="input__default">
+                        <input type="time" id="expenseTime" class="input__default">
+                    </div>
+
+                </div>
+                <div class="input__box">
+                    <label for="expenseCategory">Category</label>
+                        <select id="expenseCategory" class="input__default">
+                            <option >Food</option>
+                            <option >Cafes and restaurants</option>
+                            <option >Relaxation</option>
+                            <option >Vehicle</option>
+                            <option >Communication</option>
+                        </select>
+                </div>
+                <div class="input__box">
+                    <label for="expenseAmount">Amount </label>
+                        <input type="number" id="expenseAmount" class="input__default" placeholder="Enter sum">
+                </div>
+            </form>
+        </div>
+</div>
+<!-- Incomes -->
+<div id="incomes" class="hidden">
+    <div class="header">
+        <div class="header__wrapper">
+            <button type="button" class="btn__header" id="backInIncomes"><i class="fas fa-arrow-left"></i></button>
+            Incomes
+            <button type="button" class="btn__header" id="incomesCheck"><i class="fas fa-check"></i></button>
+        </div>
+    </div>
+    <div class="main__expansion">
+        <form action="#" class="input__wrapper">
+            <div class="input__box">
+                <label for="incomesDate">Date</label>
+                <div class="date__wrapper">
+                    <input type="date" id="incomesDate" class="input__default">
+                    <input type="time" id="incomesTime" class="input__default">
+                </div>
+            </div>
+            <div class="input__box">
+                <label for="incomesCategory">Category</label>
+                <select id="incomesCategory" class="input__default">
+                    <option>Salary</option>
+                    <option>Premium</option>
+                    <option>Stipend</option>
+                </select>
+            </div>
+            <div class="input__box">
+                <label for="incomesAmount">Amount</label>
+                <input type="number" id="incomesAmount" class="input__default" placeholder="Enter sum">
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Expense history -->
+<div id="expenseHistory" class="hidden">
+    <div class="header">
+        <div class="header__wrapper">
+            <button type="button" class="btn__header" id="backInExpanseHistory"><i class="fas fa-arrow-left"></i></button>
+            Expense History
+            <button type="button" class="btn__header "><i class="fas fa-sign-out-alt"></i></button>
+        </div>
+    </div>
+    <div class="main__expansion">
+        <form action="#" class="history__period">
+            <input type="date" id="expenseHistoryDateStart" class="history__input"> -
+            <input type="date" id="expenseHistoryDateEnd" class="history__input">
+        </form>
+        <div class="history__all">All:<span id="amountExpenseHistoryAll">0</span></div>
+        <div id="historyExpensePeriod">
+
+        </div>
+    </div>
+</div>
+<!-- Incomes history -->
+<div id="incomesHistory" class="hidden">
+    <div class="header">
+        <div class="header__wrapper">
+            <button type="button" class="btn__header" id="backInIncomesHistory"><i class="fas fa-arrow-left"></i></button>
+            Incomes History
+            <button type="button" class="btn__header"><i class="fas fa-sign-out-alt"></i></button>
+        </div>
+    </div>
+
+    <div class="main__expansion">
+        <form action="#" class="history__period">
+            <input type="date" id="incomesHistoryDateStart" class="history__input"> -
+            <input type="date" id="incomesHistoryDateEnd" class="history__input">
+        </form>
+        <div class="history__all">All:<span id="amountIncomesHistoryAll">0</span></div>
+        <div id="historyIncomesPeriod">
+
+        </div>
+    </div>
+</div>
+<!-- Balance -->
+<div id="balance" class="hidden">
+    <div class="header">
+        <div class="header__wrapper">
+            <button type="button" class="btn__header" id="backInBalance"><i class="fas fa-arrow-left"></i></button>
+            Balance
+            <button type="button" class="btn__header"><i class="fas fa-sign-out-alt"></i></button>
+        </div>
+    </div>
+    <div class="main__expansion">
+        <div class="history__period">
+            <button class="balance__btn" id="yearDown"><i class="fas fa-chevron-left"></i></button>
+            <input type="number" class="input__balance" id="yearBalance">
+            <button class="balance__btn" id="yearUp"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="history__all">All: <span id="amountBalanceAll">0</span></div>
+        <div>
+            <div class="history__item">January<span id="january">0</span></div>
+            <div class="history__item">February<span id="february">0</span></div>
+            <div class="history__item">March<span id="march">0</span></div>
+            <div class="history__item">April<span id="april">0</span></div>
+            <div class="history__item">May<span id="may">0</span></div>
+            <div class="history__item">June<span id="june">0</span></div>
+            <div class="history__item">July<span id="july">0</span></div>
+            <div class="history__item">August<span id="august">0</span></div>
+            <div class="history__item">September<span id="september">0</span></div>
+            <div class="history__item">October<span id="october">0</span></div>
+            <div class="history__item">November<span id="november">0</span></div>
+            <div class="history__item">December<span id="december">0</span></div>
+        </div>
+    </div>
+</div>
+<!-- MAIN -->
+<div id="main" class="main">
+    <!-- Hamburger -->
+    <div id="hamburger" >
+            <div class="user__info">
+                <button type="button" class="btn__hamburger" id="hamburgerOff"><i class="far fa-times-circle"></i></button>
+                <i class="fas fa-user-circle"></i>
+                <span id="nameUser"></span>
+            </div>
+            <div class="social__developer">
+                <p>Contact the developer:</p>
+                <div class="social__wrapper">
+                    <p>E-mail: roman.melnykovych97@gmail.com</p>
+                    <a href="https://www.instagram.com/romanmelnikovich/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/sector9779"><i class="fab fa-facebook-square"></i></a>
+                    <a href="https://www.linkedin.com/in/roman-melnykovych-530577188/"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+    </div>
+    <header class="header">
+        <div class="header__wrapper">
+            <button type="button" class="btn__header" id="hamburgerOpen"><i class="fas fa-bars"></i></button>
+            <span>Money Tracker</span>
+            <div class="user__info__header">
+                <i class="fas fa-user-circle"></i>
+                <span id="nameUserHeader"></span>
+            </div>
+            <button type="button" class="btn__header" id="signOut"><i class="fas fa-sign-out-alt"></i></button>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="main__wrapper">
+        <div class="main__expansion">
+            <div class="name__section">Expenses</div>
+            <div class="period__wrapper">
+                <div class="currency">UAH</div>
+                <div class="period">
+                    <div>Today <span id="amountExpenseDay">0</span></div>
+                    <div>Week <span id="amountExpenseWeek">0</span></div>
+                    <div>Month <span id="amountExpenseMonth">0</span></div>
+                </div>
+                <div class="btn__group">
+                    <button type="button" class="main__btn" id="addExpense"><i class="fas fa-plus"></i></button>
+                    <button type="button" class="main__btn" id="openExpenseHistory"><i class="fas fa-history"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="main__expansion">
+            <div class="name__section">Incomes</div>
+            <div class="period__wrapper">
+                <div class="currency">UAH</div>
+                <div class="period">
+                    <div>Today <span id="amountIncomesDay">0</span></div>
+                    <div>Week <span id="amountIncomesWeek">0</span></div>
+                    <div>Month <span id="amountIncomesMonth">0</span></div>
+                </div>
+                <div class="btn__group">
+                    <button type="button" class="main__btn" id="addIncomes"><i class="fas fa-plus"></i></button>
+                    <button type="button" class="main__btn" id="openIncomesHistory"><i class="fas fa-history"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="main__expansion">
+            <div class="name__section">Balance</div>
+            <div class="period__wrapper">
+                <div class="currency">UAH</div>
+                <div class="period">
+                    <div> All time <span id="amountBalance">0</span></div>
+                </div>
+                <button type="button" class="main__btn" id="openBalance"><i class="fas fa-ellipsis-h"></i></button>
+            </div>
+        </div>
+    </div>
+        <!--Main Expense-->
+        <div id="mainExpense" class="hidden">
+            <div class="main__box">
+                <div class="main__form__wrapper">
+                    <form action="#" class="input__wrapper">
+                        <div class="input__box">
+                            <label for="expenseMainDate">Date</label>
+                            <div class="date__wrapper">
+                                <input type="date" id="expenseMainDate" class="input__default">
+                                <input type="time" id="expenseMainTime" class="input__default">
+                            </div>
+                        </div>
+                        <div class="input__box">
+                            <label for="expenseMainCategory">Category</label>
+                            <select id="expenseMainCategory" class="input__default">
+                                <option >Food</option>
+                                <option >Cafes and restaurants</option>
+                                <option >Relaxation</option>
+                                <option >Vehicle</option>
+                                <option >Communication</option>
+                            </select>
+                        </div>
+                        <div class="input__box">
+                            <label for="expenseMainAmount">Amount </label>
+                            <input type="number" id="expenseMainAmount" class="input__default" placeholder="Enter sum">
+                        </div>
+                    </form>
+                </div>
+                <div class="btn__group__main">
+                    <button type="button" class="main__btn__exit" id="exitMainExpense"><i class="far fa-times-circle"></i></button>
+                    <button type="button" class="main__btn" id="expenseMainCheck"><i class="fas fa-check"></i></button>
+                </div>
+            </div>
+        </div>
+        <!--Main Incomes-->
+        <div id="mainIncomes" class="hidden">
+            <div class="main__box">
+                <div class="main__form__wrapper">
+                    <form action="#" class="input__wrapper">
+                        <div class="input__box">
+                            <label for="incomesMainDate">Date</label>
+                            <div class="date__wrapper">
+                                <input type="date" id="incomesMainDate" class="input__default">
+                                <input type="time" id="incomesMainTime" class="input__default">
+                            </div>
+                        </div>
+                        <div class="input__box">
+                            <label for="incomesMainCategory">Category</label>
+                            <select id="incomesMainCategory" class="input__default">
+                                <option>Salary</option>
+                                <option>Premium</option>
+                                <option>Stipend</option>
+                            </select>
+                        </div>
+                        <div class="input__box">
+                            <label for="incomesMainAmount">Amount </label>
+                            <input type="number" id="incomesMainAmount" class="input__default" placeholder="Enter sum">
+                        </div>
+                    </form>
+                </div>
+                <div class="btn__group__main">
+                    <button type="button" class="main__btn__exit" id="exitMainIncomes"><i class="far fa-times-circle"></i></button>
+                    <button type="button" class="main__btn" id="incomesMainCheck"><i class="fas fa-check"></i></button>
+                </div>
+            </div>
+        </div>
+        <!--Main Expense History-->
+        <div id="expenseHistoryMain" class="hidden">
+            <div class="main__history__box">
+                <form action="#" class="history__period">
+                    <input type="date" id="expenseHistoryMainDateStart" class="history__input"> -
+                    <input type="date" id="expenseHistoryMainDateEnd" class="history__input">
+                </form>
+                <div class="history__all">All:<span id="amountExpenseHistoryMainAll">0</span></div>
+                <button type="button" class="btn__history__exit" id="exitMainExpenseHistory"><i class="far fa-times-circle"></i></button>
+                <div id="historyExpenseMainPeriod">
+
+                </div>
+            </div>
+        </div>
+        <!--Main Incomes History-->
+        <div id="incomesHistoryMain" class="hidden">
+            <div class="main__history__box">
+                <form action="#" class="history__period">
+                    <input type="date" id="incomesHistoryMainDateStart" class="history__input"> -
+                    <input type="date" id="incomesHistoryMainDateEnd" class="history__input">
+                </form>
+                <div class="history__all">All:<span id="amountIncomesHistoryMainAll">0</span></div>
+                <button type="button" class="btn__history__exit" id="exitMainIncomesHistory"><i class="far fa-times-circle"></i></button>
+                <div id="historyIncomesMainPeriod">
+
+                </div>
+            </div>
+        </div>
+        <!--Main Balance-->
+        <div id="mainBalance" class="hidden">
+            <div class="main__history__box">
+                <div class="history__period">
+                    <button class="balance__btn" id="yearDownMain"><i class="fas fa-chevron-left"></i></button>
+                    <input type="number" class="input__balance" id="yearBalanceMain">
+                    <button class="balance__btn" id="yearUpMain"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="history__all">All: <span id="amountBalanceAllMain">0</span></div>
+                <button type="button" class="btn__history__exit" id="exitMainBalance"><i class="far fa-times-circle"></i></button>
+                <div class="history__item">January<span id="januaryMain">0</span></div>
+                <div class="history__item">February<span id="februaryMain">0</span></div>
+                <div class="history__item">March<span id="marchMain">0</span></div>
+                <div class="history__item">April<span id="aprilMain">0</span></div>
+                <div class="history__item">May<span id="mayMain">0</span></div>
+                <div class="history__item">June<span id="juneMain">0</span></div>
+                <div class="history__item">July<span id="julyMain">0</span></div>
+                <div class="history__item">August<span id="augustMain">0</span></div>
+                <div class="history__item">September<span id="septemberMain">0</span></div>
+                <div class="history__item">October<span id="octoberMain">0</span></div>
+                <div class="history__item">November<span id="novemberMain">0</span></div>
+                <div class="history__item">December<span id="decemberMain">0</span></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer__item">
+            <p>Contact the developer: roman.melnykovych97@gmail.com</p>
+            <a href="https://www.instagram.com/romanmelnikovich/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/sector9779"><i class="fab fa-facebook-square"></i></a>
+            <a href="https://www.linkedin.com/in/roman-melnykovych-530577188/"><i class="fab fa-linkedin"></i></a>
+            <p>money-trecker.zzz.com.ua, 2019</p>
+        </div>
+    </footer>
+</div>
+
+
+
+<script src="libs/jquery-3.4.1.min.js"></script>
+<script rel="script" type="application/javascript" src="js/indexJS.js"></script>
+<script defer src="fontawesome/all.min.js"></script>
+</body>
+</html>
