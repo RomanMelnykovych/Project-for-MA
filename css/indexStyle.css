@@ -25,6 +25,7 @@ input::-webkit-inner-spin-button {
 .header{
     background-color: #49b871;
     height: 60px;
+    width: 100%;
     box-shadow: 0 2px 5px rgba(0,0,0, .6);
 }
 .header__wrapper{
@@ -33,6 +34,7 @@ input::-webkit-inner-spin-button {
     align-items: center;
     color: #ffffff;
     font-size: 24px;
+    font-family: Poppins, serif;
 }
 .btn__header{
     font-size: 20px;
@@ -70,6 +72,7 @@ input::-webkit-inner-spin-button {
     background-color: #323232;
     height: 100px;
     padding: 10px;
+    font-family: Poppins, serif;
 }
 .user__info .fa-user-circle{
     font-size: 40px;
@@ -88,6 +91,7 @@ input::-webkit-inner-spin-button {
     font-size: 18px;
     text-align: center;
     margin-bottom: 10px;
+    font-family: monospace;
 }
 .social__wrapper{
     font-size: 12px;
@@ -116,6 +120,7 @@ input::-webkit-inner-spin-button {
     position: absolute;
     font-size: 14px;
     font-weight: bold;
+    font-family: monospace;
     color: #ffffff;
     padding: 2px 8px;
     border-top-right-radius: 10px;
@@ -141,6 +146,7 @@ input::-webkit-inner-spin-button {
 }
 .period{
     font-size: 20px;
+    font-family: cursive;
     width: 80%;
     margin: 5px;
 }
@@ -207,7 +213,7 @@ input::-webkit-inner-spin-button {
     padding: 10px;
 }
 .history__input{
-    font-size: 18px;
+    font-size: 15px;
     text-align: right;
     border: none;
     background-color: transparent;
@@ -245,7 +251,7 @@ input::-webkit-inner-spin-button {
 }
 .btn__history__exit{
     position: absolute;
-    top: 10px;
+    top: 5px;
     right: 5px;
     font-size: 23px;
     background-color: transparent;
@@ -313,22 +319,32 @@ input::-webkit-inner-spin-button {
 }
 .footer {
     display: none;
-    color: rgba(0,0,0, .8);
+    color: floralwhite;
+    /*color: rgba(0,0,0, .8);*/
     background-color: #49b871;
     box-shadow: 2px 0 5px rgba(0,0,0, .6);
-    margin-top: 15px;
-    padding-top: 10px;
-}
-.footer p{
-    margin: 2px;
+    font-family: monospace;
+
 }
 .footer__item{
     text-align: center;
+    height: 60px;
 }
 .footer__item a{
-    color: rgba(0,0,0, .8);
+    color: floralwhite;
+    /*color: rgba(0,0,0, .8);*/
     font-size: 20px;
-    margin: 5px;
+
+}
+.footer__box{
+    display: block;
+    background-color: #187845;
+    height: 30px;
+    text-align: center;
+    padding-top: 3px;
+}
+.footer__box p {
+    margin-top: 3px;
 }
 .user__info__header{
     display: none;
@@ -338,7 +354,19 @@ input::-webkit-inner-spin-button {
     font-size: 16px;
     margin-left: 15px;
 }
-
+.chart__wrapper{
+    display: flex;
+    justify-content: center;
+    height: 300px;
+}
+.btn__chart{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 23px;
+    background-color: transparent;
+    border: none;
+}
 
 .hidden{
     display: none;
@@ -380,7 +408,7 @@ input::-webkit-inner-spin-button {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-left: 55%;
+        margin-left: 50%;
     }
     .header__wrapper > span{
         margin-left: 50px;

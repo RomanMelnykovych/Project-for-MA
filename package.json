@@ -1,0 +1,13 @@
+{
+  "name": "Project-for-MA",
+  "version": "1.0.0",
+  "dependencies": {
+    "anychart": "^8.6.0"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.3.30",
+    "@types/node": "^12.6.9",
+    "jquery": "^3.4.1",
+    "typescript": "^3.5.3"
+  }
+}

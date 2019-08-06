@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/indexStyle.css">
-    <link rel="stylesheet" href="fontawesome/all.min.css">
+    <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css?hcode=be5162d915534272a57d0bb781d27f2b" type="text/css" rel="stylesheet">
+    <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css?hcode=be5162d915534272a57d0bb781d27f2b" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500&display=swap" rel="stylesheet">
     <title>Money Tracker</title>
 </head>
 <body>
@@ -84,7 +86,7 @@
         <div class="header__wrapper">
             <button type="button" class="btn__header" id="backInExpanseHistory"><i class="fas fa-arrow-left"></i></button>
             Expense History
-            <button type="button" class="btn__header "><i class="fas fa-sign-out-alt"></i></button>
+            <button type="button" class="btn__header" id="openExpenseHistoryChart"><i class="fas fa-chart-pie"></i></button>
         </div>
     </div>
     <div class="main__expansion">
@@ -98,13 +100,28 @@
         </div>
     </div>
 </div>
+<!-- Expense history chart-->
+<div id="expenseHistoryChart" class="hidden">
+    <div class="header">
+        <div class="header__wrapper">
+            <button type="button" class="btn__header" id="backInExpanseHistoryChart"><i class="fas fa-arrow-left"></i></button>
+            Chart
+            <div style="width: 50px"></div>
+        </div>
+    </div>
+    <div class="main__expansion">
+        <div id="expenseHistoryChartWrapper" class="chart__wrapper">
+
+        </div>
+</div>
+</div>
 <!-- Incomes history -->
 <div id="incomesHistory" class="hidden">
     <div class="header">
         <div class="header__wrapper">
             <button type="button" class="btn__header" id="backInIncomesHistory"><i class="fas fa-arrow-left"></i></button>
             Incomes History
-            <button type="button" class="btn__header"><i class="fas fa-sign-out-alt"></i></button>
+            <button type="button" class="btn__header" id="openIncomesHistoryChart"><i class="fas fa-chart-pie"></i></button>
         </div>
     </div>
 
@@ -119,13 +136,28 @@
         </div>
     </div>
 </div>
+<!-- Incomes history chart-->
+<div id="incomesHistoryChart" class="hidden">
+    <div class="header">
+        <div class="header__wrapper">
+            <button type="button" class="btn__header" id="backInIncomesHistoryChart"><i class="fas fa-arrow-left"></i></button>
+            Chart
+            <div style="width: 50px"></div>
+        </div>
+    </div>
+    <div class="main__expansion">
+        <div id="incomesHistoryChartWrapper" class="chart__wrapper">
+
+        </div>
+    </div>
+</div>
 <!-- Balance -->
 <div id="balance" class="hidden">
     <div class="header">
         <div class="header__wrapper">
             <button type="button" class="btn__header" id="backInBalance"><i class="fas fa-arrow-left"></i></button>
-            Balance
-            <button type="button" class="btn__header"><i class="fas fa-sign-out-alt"></i></button>
+            Annual balance
+            <div style="width: 50px"></div>
         </div>
     </div>
     <div class="main__expansion">
@@ -151,6 +183,7 @@
         </div>
     </div>
 </div>
+
 <!-- MAIN -->
 <div id="main" class="main">
     <!-- Hamburger -->
@@ -219,7 +252,7 @@
             <div class="period__wrapper">
                 <div class="currency">UAH</div>
                 <div class="period">
-                    <div> All time <span id="amountBalance">0</span></div>
+                    <div> Month <span id="amountBalance">0</span></div>
                 </div>
                 <button type="button" class="main__btn" id="openBalance"><i class="fas fa-ellipsis-h"></i></button>
             </div>
@@ -295,6 +328,7 @@
         <div id="expenseHistoryMain" class="hidden">
             <div class="main__history__box">
                 <form action="#" class="history__period">
+                    <button type="button" class="btn__chart" id="openMainExpenseHistoryChart"><i class="fas fa-chart-pie"></i></button>
                     <input type="date" id="expenseHistoryMainDateStart" class="history__input"> -
                     <input type="date" id="expenseHistoryMainDateEnd" class="history__input">
                 </form>
@@ -303,18 +337,25 @@
                 <div id="historyExpenseMainPeriod">
 
                 </div>
+                <div id="mainExpenseChart" class="chart__wrapper">
+
+                </div>
             </div>
         </div>
         <!--Main Incomes History-->
         <div id="incomesHistoryMain" class="hidden">
             <div class="main__history__box">
                 <form action="#" class="history__period">
+                    <button type="button" class="btn__chart" id="openMainIncomesHistoryChart"><i class="fas fa-chart-pie"></i></button>
                     <input type="date" id="incomesHistoryMainDateStart" class="history__input"> -
                     <input type="date" id="incomesHistoryMainDateEnd" class="history__input">
                 </form>
                 <div class="history__all">All:<span id="amountIncomesHistoryMainAll">0</span></div>
                 <button type="button" class="btn__history__exit" id="exitMainIncomesHistory"><i class="far fa-times-circle"></i></button>
                 <div id="historyIncomesMainPeriod">
+
+                </div>
+                <div id="mainIncomesChart" class="chart__wrapper">
 
                 </div>
             </div>
@@ -351,6 +392,8 @@
             <a href="https://www.instagram.com/romanmelnikovich/"><i class="fab fa-instagram"></i></a>
             <a href="https://www.facebook.com/sector9779"><i class="fab fa-facebook-square"></i></a>
             <a href="https://www.linkedin.com/in/roman-melnykovych-530577188/"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <div class="footer__box">
             <p>money-trecker.zzz.com.ua, 2019</p>
         </div>
     </footer>
@@ -359,7 +402,11 @@
 
 
 <script src="libs/jquery-3.4.1.min.js"></script>
-<script rel="script" type="application/javascript" src="js/indexJS.js"></script>
-<script defer src="fontawesome/all.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js?hcode=be5162d915534272a57d0bb781d27f2b"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js?hcode=be5162d915534272a57d0bb781d27f2b"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js?hcode=be5162d915534272a57d0bb781d27f2b"></script>
+<script rel="script" type="application/javascript" src="src/indexJS.js"></script>
+
+<script async src="https://kit.fontawesome.com/36a3d550cb.js"></script>
 </body>
 </html>
