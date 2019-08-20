@@ -3,32 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/styleLogInAndSignIn.css">
-
+    <link rel="stylesheet" href="../css/styleSignInAndSignUp.css">
     <title>Sign In</title>
 </head>
 <body>
-<div class="form__wrapper">
+<div class="form">
     <div class="logo">
         <img src="../img/logo.png" alt="Logo Money Tracker">
     </div>
-    <div class="user__auth__form">
+    <div class="user-auth-form">
         <form>
-            <div class="input__group ">
-                <span id="userCheck" class="hidden"></span>
+            <div class="input-group">
+                <span id="userCheck" class="box-hidden"></span>
                 <label for="userEmail" >
-                    <span class="ic"><i class="fa fa-user"></i></span>
-                    <input type="text" class="form__input" id="userEmail" placeholder="E-mail" autocomplete="off">
+                    <span class="input-group__icon"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-input" id="userEmail" placeholder="E-mail" autocomplete="off">
                 </label>
             </div>
-            <div class="input__group">
+            <div class="input-group">
                 <label for="userPassword" >
-                    <span class="ic"><i class="fas fa-lock"></i></span>
-                    <input type="password" class="form__input" id="userPassword" placeholder="Password" autocomplete="off">
+                    <span class="input-group__icon"><i class="fas fa-lock"></i></span>
+                    <input type="password" class="form-input" id="userPassword" placeholder="Password" autocomplete="off">
                 </label>
             </div>
-            <button type="button" class="btn btn__default full__width" id="sign-in" >Sign in</button>
-            <button type="button" class="btn btn__sign full__width" id="sign-up" >Sign up</button>
+            <button type="button" class="btn btn_btn-default btn_full-width" id="sign-in" >Sign in</button>
+            <button type="button" class="btn btn_btn-sign btn_full-width" id="sign-up" >Sign up</button>
         </form>
     </div>
 </div>

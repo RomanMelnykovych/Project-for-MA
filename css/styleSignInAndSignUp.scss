@@ -1,0 +1,144 @@
+/*Reset*/
+*{
+  box-sizing: border-box;
+}
+body{
+  margin: 0;
+}
+:active, :hover, :focus {
+  outline: 0;
+  outline-offset: 0;
+}
+.box-hidden{
+  display: none;
+}
+/* Sign in*/
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: url("../img/bg-img.jpg") no-repeat center / cover;
+  height: 100vh;
+  box-shadow: 100vw 0 0 rgba(0,0,0, .75) inset;
+  overflow-y: auto;
+  padding: 50px 0;
+}
+.logo{
+  img {
+    width: 200px;
+    height: 200px;
+  }
+}
+.user-auth-form{
+  max-width: 240px;
+  width: 100%;
+}
+.input-group{
+  color: rgba(255, 255, 255, .9);
+  margin-bottom: 20px;
+  label{
+    position: relative;
+  }
+}
+.input-group__icon{
+  color: #ffffff;
+  font-size: 15px;
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.input-group__icon_error{
+  color: red;
+}
+.form-input{
+  border: 1px solid #49b871;
+  height: 50px;
+  font-size: 17px;
+  color: rgba(255, 255, 255, .8);
+  background-color: transparent;
+  border-radius: 30px;
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-top: 5px;
+  transition: all .2s linear;
+}
+.form-input:focus{
+  box-shadow: 0 0 15px rgba(73,184,113, .8);
+}
+.btn{
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 17px;
+  border-radius: 30px;
+  padding: 15px 50px;
+  transition: all .3s linear;
+  text-align: center;
+}
+.btn_full-width{
+  width: 100%;
+}
+.btn_btn-default{
+  border: #36cb6c;
+  background-color: #36cb6c;
+  color: #ffffff;
+  margin-top: 50px;
+}
+.btn_btn-default:hover{
+  box-shadow: 0 0 10px #36cb6c;
+}
+.btn_btn-sign{
+  border: #FF1D1D;
+  background-color: #FF1D1D;
+  color: #ffffff;
+  margin-top: 20px;
+}
+.btn_btn-sign:hover{
+  box-shadow: 0 0 10px #FF1D1D;
+}
+
+/* SignUp */
+.input-group-sign{
+  color: rgba(255, 255, 255, .9);
+  font-size: 20px;
+  margin-bottom: 15px;
+  label{
+    position: relative;
+  }
+}
+.input-group-sign__icon-error{
+  position: absolute;
+  font-size: 15px;
+  color: red;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-35%);
+}
+.input-group-popUp{
+  display: block;
+  font-size: 12px;
+  font-style: italic;
+  text-align: center;
+  padding: 0 10px;
+}
+.form-input_error{
+  box-shadow: 0 0 15px rgba(242,38,19, .8);
+  border: 1px solid red;
+}
+.form-input_error:focus{
+  box-shadow: 0 0 15px rgba(242,38,19, .8);
+}
+
+@media (min-width: 480px) {
+  .user-auth-form{
+    max-width: 320px;
+  }
+}
+@media (min-width: 600px) {
+  .user-auth-form{
+    max-width: 480px;
+  }
+}

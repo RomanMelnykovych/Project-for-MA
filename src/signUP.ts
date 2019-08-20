@@ -23,11 +23,11 @@ $(document).ready(function () : void {
         if (userFirstName.val() === "" || userLastName.val() === "" || userPassword.val() === "" || userEmail.val() === ""){
             alert("Заповніть всі поля!!")
         }else {
-            let tempArray : User = new User(
+            let tempArray : object = buildUser(
                     userFirstName.val().trim(),
                     userLastName.val().trim(),
                     userPassword.val().trim(),
-                    userEmail.val().trim()
+                    userEmail.val().trim(),
                 );
             console.log(tempArray);
             if (validate(tempArray["userpassword"], tempArray["useremail"])){
@@ -42,54 +42,61 @@ $(document).ready(function () : void {
         }
     });
 
-    class User {
+    interface IUser {
         userfirstname : string;
         userlastname : string;
         userpassword : string;
         useremail : string;
-        constructor(userfirstname : string, userlastname : string, userpassword : string, useremail : string){
-            this.userfirstname = userfirstname;
-            this.userlastname = userlastname;
-            this.userpassword = userpassword;
-            this.useremail = useremail;
-        }
+    }
+
+    function buildUser(firstname: string, lastname: string, password: string, email: string ): IUser {
+        return {
+            userfirstname: firstname,
+            userlastname: lastname,
+            userpassword: password,
+            useremail: email};
     }
 
     function validate(pswd : string, email : string) : boolean{
         validatePswd(pswd);
         validateEmail(email);
-        let passwordCheck : any = $("#passwordCheck");
-        let iconErrorPswd : any = $("#iconErrorPswd");
-        let emailCheck : any = $("#emailCheck");
-        let iconErrorEmail : any = $("#iconErrorEmail");
+        let $passwordCheck : any = $("#passwordCheck");
+        let $iconErrorPswd : any = $("#iconErrorPswd");
+        let $emailCheck : any = $("#emailCheck");
+        let $iconErrorEmail : any = $("#iconErrorEmail");
 
-        if (validatePswd(pswd) === false){
-            userPassword.addClass("error");
-            passwordCheck.removeClass("hidden");
-            passwordCheck.addClass("input__group__popUp");
-            passwordCheck.html(`Пароль повинен містити тільки латинські великі та маленькі букви, цифри. І довжина більша за 8 символів`)  ;
-            iconErrorPswd.removeClass("hidden");
-            iconErrorPswd.addClass("icon__error" );
-        } else {
-            userPassword.removeClass("error");
-            passwordCheck.removeClass("input__group__popUp");
-            passwordCheck.addClass("hidden");
-            iconErrorPswd.removeClass("icon__error");
-            iconErrorPswd.addClass("hidden");
-        }
+        let errorClass : string = "form-input_error";
+        let hiddenClass : string = "box-hidden";
+        let iconErrorClass : string = "input-group-sign__icon-error";
+        let popUpClass : string = "input-group-popUp";
+
         if (validateEmail(email) === false){
-            userEmail.addClass(" error");
-            emailCheck.removeClass("hidden");
-            emailCheck.addClass("input__group__popUp");
-            emailCheck.html(`E-mail має мати такий вигляд: yourml@email.com`);
-            iconErrorEmail.removeClass("hidden");
-            iconErrorEmail.addClass("icon__error" );
+            userEmail.addClass(errorClass);
+            $emailCheck.removeClass(hiddenClass);
+            $emailCheck.addClass(popUpClass);
+            $emailCheck.html("The email should look like: yourml@email.com!");
+            $iconErrorEmail.removeClass(hiddenClass);
+            $iconErrorEmail.addClass(iconErrorClass);
         }else {
-            userEmail.removeClass("error");
-            emailCheck.removeClass("input__group__popUp");
-            emailCheck.addClass("hidden");
-            iconErrorEmail.removeClass("icon__error");
-            iconErrorEmail.addClass("hidden");
+            userEmail.removeClass(errorClass);
+            $emailCheck.removeClass(popUpClass);
+            $emailCheck.addClass(hiddenClass);
+            $iconErrorEmail.removeClass(iconErrorClass);
+            $iconErrorEmail.addClass(hiddenClass);
+        }
+        if (validatePswd(pswd) === false){
+            userPassword.addClass(errorClass);
+            $passwordCheck.removeClass(hiddenClass);
+            $passwordCheck.addClass(popUpClass);
+            $passwordCheck.html("Password is at least 8 characters long. Password must contain uppercase and lowercase Latin letters and numbers!");
+            $iconErrorPswd.removeClass(hiddenClass);
+            $iconErrorPswd.addClass(iconErrorClass);
+        } else {
+            userPassword.removeClass(errorClass);
+            $passwordCheck.removeClass(popUpClass);
+            $passwordCheck.addClass(hiddenClass);
+            $iconErrorPswd.removeClass(iconErrorClass);
+            $iconErrorPswd.addClass(hiddenClass);
         }
         if (validatePswd(pswd) && validateEmail(email)) {
             return true;

@@ -9,6 +9,11 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true
   },
+  "files": [
+    "src/indexJS.ts",
+    "src/signIN.ts",
+    "src/signUP.ts"
+  ],
   "exclude": [
     "node_modules"
   ]
