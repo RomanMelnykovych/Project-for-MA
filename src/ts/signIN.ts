@@ -1,11 +1,11 @@
-/// <reference path="../node_modules/@types/jquery/index.d.ts" />
+/// <reference path="../../node_modules/@types/jquery/index.d.ts" />
 
 $(document).ready(
     function () : void {
         var refererUrl : string = document.referrer; // запис url з якого прийшов користувач
 
         if (localStorage.getItem("authUser")) { // перевірка чи є авторизований користувач
-            window.location.href = "../index.html";
+            window.location.href = "../../index.html";
         }
 
         var userArray : [object];
@@ -43,7 +43,7 @@ $(document).ready(
                     icon.addClass("input-group__icon_error");
                 } else if (userEmail.val().trim() === tempUser["useremail"] && userPassword.val().trim() === tempUser["userpassword"]) { // якщо всі дані збігаються тоді авторизувати користувача
                     localStorage.setItem("authUser", JSON.stringify(tempUser)); // запис авторизованого користувача
-                    window.location.href = "../index.html";
+                    window.location.href = "../../index.html";
                 }
             } else {
                 alert("Fill in all the fields !!!");

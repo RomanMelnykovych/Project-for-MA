@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css?hcode=be5162d915534272a57d0bb781d27f2b" type="text/css" rel="stylesheet">
     <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css?hcode=be5162d915534272a57d0bb781d27f2b" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" href="css/styleIndex.css">
+    <link rel="stylesheet" href="src/sass/styleIndex.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500&display=swap" rel="stylesheet">
     <title>Money Tracker</title>
 </head>
@@ -80,12 +80,12 @@
     <div class="header">
             <button type="button" class="header__btn" id="backInExpanseHistory"><i class="fas fa-arrow-left"></i></button>
             Expense History
-            <button type="button" class="header__btn" id="openExpenseHistoryChart"><i class="fas fa-chart-pie"></i></button>
+            <div class="header__btn_disabled"></div>
     </div>
     <div class="main-expansion">
         <form action="#" class="history-period">
-            <input type="date" id="expenseHistoryDateStart" class="history-period__input"> -
-            <input type="date" id="expenseHistoryDateEnd" class="history-period__input">
+            <input type="date" id="expenseHistoryDateStart" name="expenseHistoryDate" class="history-period__input"> -
+            <input type="date" id="expenseHistoryDateEnd" name="expenseHistoryDate" class="history-period__input">
         </form>
         <div class="history-amount-all">All :<span id="amountExpenseHistoryAll">0</span></div>
         <div id="historyExpensePeriod">
@@ -93,46 +93,20 @@
         </div>
     </div>
 </div>
-<!-- Expense history chart-->
-<div id="expenseHistoryChart" class="box-hidden">
-    <div class="header">
-            <button type="button" class="header__btn" id="backInExpanseHistoryChart"><i class="fas fa-arrow-left"></i></button>
-            Chart
-            <div class="header__btn_disabled"></div>
-    </div>
-    <div class="main-expansion">
-        <div id="expenseHistoryChartWrapper" class="chart">
-
-        </div>
-</div>
-</div>
 <!-- Incomes history -->
 <div id="incomesHistory" class="box-hidden">
     <div class="header">
             <button type="button" class="header__btn" id="backInIncomesHistory"><i class="fas fa-arrow-left"></i></button>
             Incomes History
-            <button type="button" class="header__btn" id="openIncomesHistoryChart"><i class="fas fa-chart-pie"></i></button>
+        <div class="header__btn_disabled"></div>
     </div>
     <div class="main-expansion">
         <form action="#" class="history-period">
-            <input type="date" id="incomesHistoryDateStart" class="history-period__input"> -
-            <input type="date" id="incomesHistoryDateEnd" class="history-period__input">
+            <input type="date" id="incomesHistoryDateStart" name="incomesHistoryDate" class="history-period__input"> -
+            <input type="date" id="incomesHistoryDateEnd" name="incomesHistoryDate" class="history-period__input">
         </form>
         <div class="history-amount-all">All:<span id="amountIncomesHistoryAll">0</span></div>
         <div id="historyIncomesPeriod">
-
-        </div>
-    </div>
-</div>
-<!-- Incomes history chart-->
-<div id="incomesHistoryChart" class="box-hidden">
-    <div class="header">
-            <button type="button" class="header__btn" id="backInIncomesHistoryChart"><i class="fas fa-arrow-left"></i></button>
-            Chart
-            <div class="header__btn_disabled"></div>
-    </div>
-    <div class="main-expansion">
-        <div id="incomesHistoryChartWrapper" class="chart">
 
         </div>
     </div>
@@ -383,16 +357,12 @@
         <div id="expenseHistoryMain" class="box-hidden">
             <div class="main-history-box">
                 <form action="#" class="history-period">
-                    <button type="button" class="btn-chart" id="openMainExpenseHistoryChart"><i class="fas fa-chart-pie"></i></button>
-                    <input type="date" id="expenseHistoryMainDateStart" class="history-period__input"> -
-                    <input type="date" id="expenseHistoryMainDateEnd" class="history-period__input">
+                    <input type="date" id="expenseHistoryMainDateStart" name="expenseHistoryDateMain" class="history-period__input"> -
+                    <input type="date" id="expenseHistoryMainDateEnd" name="expenseHistoryDateMain" class="history-period__input">
                 </form>
                 <div class="history-amount-all">All:<span id="amountExpenseHistoryMainAll">0</span></div>
                 <button type="button" class="btn-exit btn-exit_history" id="exitMainExpenseHistory"><i class="far fa-times-circle"></i></button>
                 <div id="historyExpenseMainPeriod">
-
-                </div>
-                <div id="mainExpenseChart" class="chart">
 
                 </div>
             </div>
@@ -401,16 +371,12 @@
         <div id="incomesHistoryMain" class="box-hidden">
             <div class="main-history-box">
                 <form action="#" class="history-period">
-                    <button type="button" class="btn-chart" id="openMainIncomesHistoryChart"><i class="fas fa-chart-pie"></i></button>
-                    <input type="date" id="incomesHistoryMainDateStart" class="history-period__input"> -
-                    <input type="date" id="incomesHistoryMainDateEnd" class="history-period__input">
+                    <input type="date" id="incomesHistoryMainDateStart" name="incomesHistoryDateMain" class="history-period__input"> -
+                    <input type="date" id="incomesHistoryMainDateEnd" name="incomesHistoryDateMain" class="history-period__input">
                 </form>
                 <div class="history-amount-all">All:<span id="amountIncomesHistoryMainAll">0</span></div>
                 <button type="button" class="btn-exit btn-exit_history" id="exitMainIncomesHistory"><i class="far fa-times-circle"></i></button>
                 <div id="historyIncomesMainPeriod">
-
-                </div>
-                <div id="mainIncomesChart" class="chart">
 
                 </div>
             </div>
@@ -525,14 +491,16 @@
     </footer>
 </div>
 
-<script src="libs/jquery-3.4.1.min.js"></script>
+<script src="src/lib/jquery.js"></script>
 <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js?hcode=be5162d915534272a57d0bb781d27f2b"></script>
 <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js?hcode=be5162d915534272a57d0bb781d27f2b"></script>
 <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js?hcode=be5162d915534272a57d0bb781d27f2b"></script>
 
-<script rel="script" type="application/javascript" src="src/indexJS.js"></script>
+<!--<script rel="script" type="application/javascript" src="public/main-built.js"></script>-->
+<!--<script data-main="src/ts/config.js" src="src/lib/require.js"></script>-->
+<script data-main="public/main-built.js" src="src/lib/require.js"></script>
 
+<script src="https://kit.fontawesome.com/36a3d550cb.js"></script>
 
-<script defer src="https://kit.fontawesome.com/36a3d550cb.js"></script>
 </body>
 </html>

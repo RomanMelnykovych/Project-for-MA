@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "amd",
     "lib": [ "dom", "es2015", "es2016", "es2017" ],
     "target": "es5",
     "sourceMap": true,
@@ -10,9 +10,9 @@
     "allowSyntheticDefaultImports": true
   },
   "files": [
-    "src/indexJS.ts",
-    "src/signIN.ts",
-    "src/signUP.ts"
+    "src/ts/indexJS.ts",
+    "src/ts/signIN.ts",
+    "src/ts/signUP.ts"
   ],
   "exclude": [
     "node_modules"
