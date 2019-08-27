@@ -7,7 +7,8 @@ var sourcemaps = require('gulp-sourcemaps');
 var rjs = require('gulp-requirejs');
 var copy = require('gulp-contrib-copy');
 var amdOptimize = require('gulp-amd-optimize');
-var bundle = require('gulp-bundle-file');
+
+
 
 var cleanCSS = require('gulp-clean-css');
 var concat = require('gulp-concat');
