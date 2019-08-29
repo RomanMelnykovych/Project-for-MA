@@ -44,30 +44,15 @@ gulp.task('requirejs:copy_lib', function() {
        .pipe(gulp.dest('public/js/'));
 });
 
-//
-// gulp.task('amd', function () {
-//      return gulp.src(["src/lib/*.js", "src/ts/*.js", "src/ts/modules/*.js"])
-//         .pipe(amdOptimize("indexJS"),{
-//             baseUrl: 'src/ts',
-//             // paths : {
-//             //     "jquery" : "src/lib/jquery",
-//             //     "eventHandler": "src/ts/modules/eventHandler",
-//             //     "getDate": "src/ts/modules/getDate",
-//             //     "searchMethod": "src/ts/modules/searchMethod",
-//             //     "amountMethod": "src/ts/modules/amountMethod",
-//             //     "historyMethod": "src/ts/modules/historyMethod",
-//             //     "chartMethod": "src/ts/modules/chartMethod",
-//             //     "reloadData": "src/ts/modules/reloadData"
-//             // },
-//             configFile : "src/ts/config.js"
-//         })
-//         .pipe(concat("index.js"))
-//         .pipe(gulp.dest("public"));
-// });
-
 
 /*Sass task*/
-gulp.task('sass', function () {
+gulp.task('sass-dev', function () {
+    return gulp.src('src/sass/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(cleanCSS({compatibility: 'ie8'}))
+        .pipe(gulp.dest('src/sass'))
+});
+gulp.task('sass-prod', function () {
    return gulp.src('src/sass/*.scss')
        .pipe(sass().on('error', sass.logError))
        .pipe(cleanCSS({compatibility: 'ie8'}))
@@ -86,6 +71,6 @@ gulp.task('watch', function () {
     gulp.watch('src/ts/**/*.ts', ['ts-compile']);
 });
 
-gulp.task('default', gulp.parallel('sass', 'ts-compile'));
-gulp.task('dev', gulp.parallel('sass', 'ts-compile'));
-gulp.task('prod', gulp.parallel('clean'));
+gulp.task('default', gulp.parallel('sass-dev', 'ts-compile', 'watch'));
+gulp.task('dev', gulp.parallel('sass-dev', 'ts-compile', 'watch'));
+gulp.task('prod', gulp.parallel('clean', 'sass-prod'));
