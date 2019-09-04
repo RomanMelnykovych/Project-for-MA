@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" lang="en" content="Money Tracker - a website through which you can control your expenses, income and wage statistics.">
+    <meta name="keywords" lang="en" content="income, expense, funds, balance, money, tracker, food, cafes, restaurants, vehicle, relaxation, communication, salary, stipend, premium">
+    <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css?hcode=be5162d915534272a57d0bb781d27f2b" type="text/css" rel="stylesheet">
+    <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css?hcode=be5162d915534272a57d0bb781d27f2b" type="text/css" rel="stylesheet">
+    <!-- @if NODE_ENV='development' -->
+    <link rel="stylesheet" href="src/sass/styleIndex.css">
+    <!-- @endif -->
+    <!-- @if NODE_ENV='production' -->
+    <link rel="stylesheet" href="css/styleIndex.css">
+    <!-- @endif -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500&display=swap" rel="stylesheet">
+    <title>Money Tracker</title>
+</head>
+<body>
+
+<!-- Expense -->
+<div id="expense" class="box-hidden">
+    <div class="header">
+        <button type="button" class="header__btn" id="backInExpanse"><i class="fas fa-arrow-left"></i></button>
+        Expense
+        <button type="button" class="header__btn" id="expenseCheck"><i class="fas fa-check"></i></button>
+    </div>
+    <div class="main-expansion">
+        <form action="#" class="input-group">
+            <div class="input-box">
+                <label for="expenseDate">Date</label>
+                <div class="input-date-wrapper">
+                    <input type="date" id="expenseDate" class="input-default">
+                    <input type="time" id="expenseTime" class="input-default">
+                </div>
+            </div>
+            <div class="input-box">
+                <label for="expenseCategory">Category</label>
+                <select id="expenseCategory" class="input-default input-default_full-width">
+                    <option >Food</option>
+                    <option >Cafes and restaurants</option>
+                    <option >Relaxation</option>
+                    <option >Vehicle</option>
+                    <option >Communication</option>
+                </select>
+            </div>
+            <div class="input-box">
+                <label for="expenseAmount">Amount </label>
+                <input type="number" id="expenseAmount" class="input-default input-default_full-width" placeholder="Enter sum">
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Incomes -->
+<div id="incomes" class="box-hidden">
+    <div class="header">
+        <button type="button" class="header__btn" id="backInIncomes"><i class="fas fa-arrow-left"></i></button>
+        Incomes
+        <button type="button" class="header__btn" id="incomesCheck"><i class="fas fa-check"></i></button>
+    </div>
+    <div class="main-expansion">
+        <form action="#" class="input-group">
+            <div class="input-box">
+                <label for="incomesDate">Date</label>
+                <div class="input-date-wrapper">
+                    <input type="date" id="incomesDate" class="input-default">
+                    <input type="time" id="incomesTime" class="input-default">
+                </div>
+            </div>
+            <div class="input-box">
+                <label for="incomesCategory">Category</label>
+                <select id="incomesCategory" class="input-default input-default_full-width">
+                    <option>Salary</option>
+                    <option>Premium</option>
+                    <option>Stipend</option>
+                </select>
+            </div>
+            <div class="input-box">
+                <label for="incomesAmount">Amount</label>
+                <input type="number" id="incomesAmount" class="input-default input-default_full-width" placeholder="Enter sum">
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Expense history -->
+<div id="expenseHistory" class="box-hidden">
+    <div class="header">
+        <button type="button" class="header__btn" id="backInExpanseHistory"><i class="fas fa-arrow-left"></i></button>
+        Expense History
+        <div class="header__btn_disabled"></div>
+    </div>
+    <div class="main-expansion">
+        <form action="#" class="history-period">
+            <input type="date" id="expenseHistoryDateStart" name="expenseHistoryDate" class="history-period__input"> -
+            <input type="date" id="expenseHistoryDateEnd" name="expenseHistoryDate" class="history-period__input">
+        </form>
+        <div class="history-amount-all">All :<span id="amountExpenseHistoryAll">0</span></div>
+        <div id="historyExpensePeriod">
+
+        </div>
+    </div>
+</div>
+<!-- Incomes history -->
+<div id="incomesHistory" class="box-hidden">
+    <div class="header">
+        <button type="button" class="header__btn" id="backInIncomesHistory"><i class="fas fa-arrow-left"></i></button>
+        Incomes History
+        <div class="header__btn_disabled"></div>
+    </div>
+    <div class="main-expansion">
+        <form action="#" class="history-period">
+            <input type="date" id="incomesHistoryDateStart" name="incomesHistoryDate" class="history-period__input"> -
+            <input type="date" id="incomesHistoryDateEnd" name="incomesHistoryDate" class="history-period__input">
+        </form>
+        <div class="history-amount-all">All:<span id="amountIncomesHistoryAll">0</span></div>
+        <div id="historyIncomesPeriod">
+
+        </div>
+    </div>
+</div>
+<!-- Balance -->
+<div id="balance" class="box-hidden">
+    <div class="header">
+        <button type="button" class="header__btn" id="backInBalance"><i class="fas fa-arrow-left"></i></button>
+        Annual balance
+        <div class="header__btn_disabled"></div>
+    </div>
+    <div class="main-expansion">
+        <div class="history-period">
+            <button class="balance-btn" id="yearDown"><i class="fas fa-chevron-left"></i></button>
+            <input type="number" class="balance-input" id="yearBalance">
+            <button class="balance-btn" id="yearUp"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="history-amount-all">All: <span id="amountBalanceAll">0</span></div>
+        <div>
+            <div class="history-item">January<span id="january">0</span></div>
+            <div class="history-item">February<span id="february">0</span></div>
+            <div class="history-item">March<span id="march">0</span></div>
+            <div class="history-item">April<span id="april">0</span></div>
+            <div class="history-item">May<span id="may">0</span></div>
+            <div class="history-item">June<span id="june">0</span></div>
+            <div class="history-item">July<span id="july">0</span></div>
+            <div class="history-item">August<span id="august">0</span></div>
+            <div class="history-item">September<span id="september">0</span></div>
+            <div class="history-item">October<span id="october">0</span></div>
+            <div class="history-item">November<span id="november">0</span></div>
+            <div class="history-item">December<span id="december">0</span></div>
+        </div>
+    </div>
+</div>
+<!-- Statistics-->
+<div id="statistics" class="box-hidden">
+    <div class="header">
+        <button type="button" class="header__btn" id="backInStatistics"><i class="fas fa-arrow-left"></i></button>
+        Statistics
+        <button type="button" class="header__btn" id="checkChart"><i class="fas fa-check"></i></button>
+    </div>
+    <div class="main-expansion">
+        <form class="chart-input-group">
+            <div class="input-box history-period">
+                Period
+                <input type="date" id="statisticsDateStart" class="history-period__input"> -
+                <input type="date" id="statisticsDateEnd" class="history-period__input">
+            </div>
+            <div class="input-box">
+                <label for="typeChart">Type chart</label>
+                <select id="typeChart" class="input-default input-default_full-width">
+                    <option >Pie</option>
+                    <option >Column</option>
+                    <option >Line</option>
+                </select>
+            </div>
+            <div class="input-box input-box_wrap">
+                <label for="all">
+                    <input id="all" name="radio" type="radio" checked> All
+                </label>
+                <label for="expenseRadio">
+                    <input id="expenseRadio" name="radio" type="radio"> Expense
+                </label>
+                <label for="incomesRadio">
+                    <input id="incomesRadio" name="radio" type="radio"> Incomes
+                </label>
+            </div>
+            <div id="categoryExpenseChart" class=" box-hidden">
+                <div class="input-box input-box_wrap">
+                    <label for="foodChart">
+                        <input id="foodChart"  name="checkboxExpense" type="checkbox"> Food
+                    </label>
+                    <label for="cafesChart">
+                        <input id="cafesChart" name="checkboxExpense" type="checkbox"> Cafes and restaurants
+                    </label>
+                    <label for="relaxChart">
+                        <input id="relaxChart" name="checkboxExpense" type="checkbox"> Relaxation
+                    </label>
+                    <label for="vehicleChart">
+                        <input id="vehicleChart" name="checkboxExpense" type="checkbox"> Vehicle
+                    </label>
+                    <label for="communicationChart">
+                        <input id="communicationChart" name="checkboxExpense" type="checkbox"> Communication
+                    </label>
+                </div>
+            </div>
+            <div id="categoryIncomesChart" class="box-hidden">
+                <div class="input-box input-box_wrap ">
+                    <label for="salaryChart">
+                        <input id="salaryChart" name="checkboxIncomes" type="checkbox"> Salary
+                    </label>
+                    <label for="premiumChart">
+                        <input id="premiumChart" name="checkboxIncomes" type="checkbox"> Premium
+                    </label>
+                    <label for="stipendChart">
+                        <input id="stipendChart" name="checkboxIncomes" type="checkbox"> Stipend
+                    </label>
+                </div>
+            </div>
+        </form>
+        <div id="statisticsChart" class="chart box-hidden">
+
+        </div>
+    </div>
+</div>
+<div id="main" class="main">
+    <!-- Hamburger -->
+    <div id="hamburger" class="hamburger" >
+        <div class="hamburger__user-info">
+            <button type="button" class="hamburger__button" id="hamburgerOff"><i class="far fa-times-circle"></i></button>
+            <i class="fas fa-user-circle"></i>
+            <span id="nameUser"></span>
+        </div>
+        <div class="social-developer">
+            <p>Contact the developer:</p>
+            <div class="social-developer__link">
+                <p>E-mail: roman.melnykovych97@gmail.com</p>
+                <a href="https://www.instagram.com/romanmelnikovich/"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/sector9779"><i class="fab fa-facebook-square"></i></a>
+                <a href="https://www.linkedin.com/in/roman-melnykovych-530577188/"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <button type="button" class="header__btn" id="hamburgerOpen"><i class="fas fa-bars"></i></button>
+        <span>Money Tracker</span>
+        <div class="header-user-info">
+            <i class="fas fa-user-circle"></i>
+            <span id="nameUserHeader"></span>
+        </div>
+        <button type="button" class="header__btn" id="signOut"><i class="fas fa-sign-out-alt"></i></button>
+    </header>
+
+    <div class="content">
+        <div class="main-wrapper">
+            <div class="main-expansion">
+                <div class="main-expansion__name">Expenses</div>
+                <div class="period">
+                    <div class="period__currency">UAH</div>
+                    <div class="period__item">
+                        <div>Today <span id="amountExpenseDay">0</span></div>
+                        <div>Week <span id="amountExpenseWeek">0</span></div>
+                        <div>Month <span id="amountExpenseMonth">0</span></div>
+                    </div>
+                    <div class="content-btn-group">
+                        <button type="button" class="btn-default" id="addExpense"><i class="fas fa-plus"></i></button>
+                        <button type="button" class="btn-default" id="openExpenseHistory"><i class="fas fa-history"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="main-expansion">
+                <div class="main-expansion__name">Incomes</div>
+                <div class="period">
+                    <div class="period__currency">UAH</div>
+                    <div class="period__item">
+                        <div>Today <span id="amountIncomesDay">0</span></div>
+                        <div>Week <span id="amountIncomesWeek">0</span></div>
+                        <div>Month <span id="amountIncomesMonth">0</span></div>
+                    </div>
+                    <div class="content-btn-group">
+                        <button type="button" class="btn-default" id="addIncomes"><i class="fas fa-plus"></i></button>
+                        <button type="button" class="btn-default" id="openIncomesHistory"><i class="fas fa-history"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="main-expansion">
+                <div class="main-expansion__name">Balance</div>
+                <div class="period">
+                    <div class="period__currency">UAH</div>
+                    <div class="period__item">
+                        <div> Month <span id="amountBalance">0</span></div>
+                    </div>
+                    <button type="button" class="btn-default" id="openBalance"><i class="fas fa-ellipsis-h"></i></button>
+                </div>
+                <div class="period">
+                    <button type="button" id="openStatistics" class="btn-statistics"><i class="far fa-chart-bar"></i> Statistics</button>
+                </div>
+            </div>
+        </div>
+        <!--Main Expense-->
+        <div id="mainExpense" class="box-hidden">
+            <div class="main-box">
+                <div class="input-group-main">
+                    <form action="#" class="input-group">
+                        <div class="input-box">
+                            <label for="expenseMainDate">Date</label>
+                            <div class="input-date-wrapper">
+                                <input type="date" id="expenseMainDate" class="input-default">
+                                <input type="time" id="expenseMainTime" class="input-default">
+                            </div>
+                        </div>
+                        <div class="input-box">
+                            <label for="expenseMainCategory">Category</label>
+                            <select id="expenseMainCategory" class="input-default input-default_full-width">
+                                <option >Food</option>
+                                <option >Cafes and restaurants</option>
+                                <option >Relaxation</option>
+                                <option >Vehicle</option>
+                                <option >Communication</option>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <label for="expenseMainAmount">Amount </label>
+                            <input type="number" id="expenseMainAmount" class="input-default input-default_full-width" placeholder="Enter sum">
+                        </div>
+                    </form>
+                </div>
+                <div class="btn-group-main">
+                    <button type="button" class="btn-exit" id="exitMainExpense"><i class="far fa-times-circle"></i></button>
+                    <button type="button" class="btn-default" id="expenseMainCheck"><i class="fas fa-check"></i></button>
+                </div>
+            </div>
+        </div>
+        <!--Main Incomes-->
+        <div id="mainIncomes" class="box-hidden">
+            <div class="main-box">
+                <div class="input-group-main">
+                    <form action="#" class="input-group">
+                        <div class="input-box">
+                            <label for="incomesMainDate">Date</label>
+                            <div class="input-date-wrapper">
+                                <input type="date" id="incomesMainDate" class="input-default">
+                                <input type="time" id="incomesMainTime" class="input-default">
+                            </div>
+                        </div>
+                        <div class="input-box">
+                            <label for="incomesMainCategory">Category</label>
+                            <select id="incomesMainCategory" class="input-default input-default_full-width">
+                                <option>Salary</option>
+                                <option>Premium</option>
+                                <option>Stipend</option>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <label for="incomesMainAmount">Amount </label>
+                            <input type="number" id="incomesMainAmount" class="input-default input-default_full-width" placeholder="Enter sum">
+                        </div>
+                    </form>
+                </div>
+                <div class="btn-group-main">
+                    <button type="button" class="btn-exit" id="exitMainIncomes"><i class="far fa-times-circle"></i></button>
+                    <button type="button" class="btn-default" id="incomesMainCheck"><i class="fas fa-check"></i></button>
+                </div>
+            </div>
+        </div>
+        <!--Main Expense History-->
+        <div id="expenseHistoryMain" class="box-hidden">
+            <div class="main-history-box">
+                <form action="#" class="history-period">
+                    <input type="date" id="expenseHistoryMainDateStart" name="expenseHistoryDateMain" class="history-period__input"> -
+                    <input type="date" id="expenseHistoryMainDateEnd" name="expenseHistoryDateMain" class="history-period__input">
+                </form>
+                <div class="history-amount-all">All:<span id="amountExpenseHistoryMainAll">0</span></div>
+                <button type="button" class="btn-exit btn-exit_history" id="exitMainExpenseHistory"><i class="far fa-times-circle"></i></button>
+                <div id="historyExpenseMainPeriod">
+
+                </div>
+            </div>
+        </div>
+        <!--Main Incomes History-->
+        <div id="incomesHistoryMain" class="box-hidden">
+            <div class="main-history-box">
+                <form action="#" class="history-period">
+                    <input type="date" id="incomesHistoryMainDateStart" name="incomesHistoryDateMain" class="history-period__input"> -
+                    <input type="date" id="incomesHistoryMainDateEnd" name="incomesHistoryDateMain" class="history-period__input">
+                </form>
+                <div class="history-amount-all">All:<span id="amountIncomesHistoryMainAll">0</span></div>
+                <button type="button" class="btn-exit btn-exit_history" id="exitMainIncomesHistory"><i class="far fa-times-circle"></i></button>
+                <div id="historyIncomesMainPeriod">
+
+                </div>
+            </div>
+        </div>
+        <!--Main Balance-->
+        <div id="mainBalance" class="box-hidden">
+            <div class="main-history-box">
+                <div class="history-period">
+                    <button class="balance-btn" id="yearDownMain"><i class="fas fa-chevron-left"></i></button>
+                    <input type="number" class="balance-input" id="yearBalanceMain">
+                    <button class="balance-btn" id="yearUpMain"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="history-amount-all">All: <span id="amountBalanceAllMain">0</span></div>
+                <button type="button" class="btn-exit btn-exit_history" id="exitMainBalance"><i class="far fa-times-circle"></i></button>
+                <div class="history-item">January<span id="januaryMain">0</span></div>
+                <div class="history-item">February<span id="februaryMain">0</span></div>
+                <div class="history-item">March<span id="marchMain">0</span></div>
+                <div class="history-item">April<span id="aprilMain">0</span></div>
+                <div class="history-item">May<span id="mayMain">0</span></div>
+                <div class="history-item">June<span id="juneMain">0</span></div>
+                <div class="history-item">July<span id="julyMain">0</span></div>
+                <div class="history-item">August<span id="augustMain">0</span></div>
+                <div class="history-item">September<span id="septemberMain">0</span></div>
+                <div class="history-item">October<span id="octoberMain">0</span></div>
+                <div class="history-item">November<span id="novemberMain">0</span></div>
+                <div class="history-item">December<span id="decemberMain">0</span></div>
+            </div>
+        </div>
+        <!--Main Statistics-->
+        <div id="statisticsMain" class="box-hidden">
+            <div class="main-box">
+                <form class="input-group-main">
+                    <div class="input-box">
+                        Period
+                        <input type="date" id="statisticsDateStartMain" class="history-period__input"> -
+                        <input type="date" id="statisticsDateEndMain" class="history-period__input">
+                    </div>
+                    <div class="input-box">
+                        <label for="typeChartMain">Type chart</label>
+                        <select id="typeChartMain" class="input-default input-default_full-width">
+                            <option >Pie</option>
+                            <option >Column</option>
+                            <option >Line</option>
+                        </select>
+                    </div>
+                    <div class="input-box input-box_wrap">
+                        <label for="allMain">
+                            <input id="allMain" name="radioMain" type="radio" checked> All
+                        </label>
+                        <label for="expenseRadioMain">
+                            <input id="expenseRadioMain" name="radioMain" type="radio"> Expense
+                        </label>
+                        <label for="incomesRadioMain">
+                            <input id="incomesRadioMain" name="radioMain" type="radio"> Incomes
+                        </label>
+                    </div>
+                    <div id="categoryExpenseChartMain" class=" box-hidden">
+                        <div class="input-box input-box_wrap">
+                            <label for="foodChartMain">
+                                <input id="foodChartMain"  name="checkboxExpense" type="checkbox"> Food
+                            </label>
+                            <label for="cafesChartMain">
+                                <input id="cafesChartMain" name="checkboxExpense" type="checkbox"> Cafes and restaurants
+                            </label>
+                            <label for="relaxChartMain">
+                                <input id="relaxChartMain" name="checkboxExpense" type="checkbox"> Relaxation
+                            </label>
+                            <label for="vehicleChartMain">
+                                <input id="vehicleChartMain" name="checkboxExpense" type="checkbox"> Vehicle
+                            </label>
+                            <label for="communicationChartMain">
+                                <input id="communicationChartMain" name="checkboxExpense" type="checkbox"> Communication
+                            </label>
+                        </div>
+                    </div>
+                    <div id="categoryIncomesChartMain" class="box-hidden">
+                        <div class="input-box input-box_wrap ">
+                            <label for="salaryChartMain">
+                                <input id="salaryChartMain" name="checkboxIncomes" type="checkbox"> Salary
+                            </label>
+                            <label for="premiumChartMain">
+                                <input id="premiumChartMain" name="checkboxIncomes" type="checkbox"> Premium
+                            </label>
+                            <label for="stipendChartMain">
+                                <input id="stipendChartMain" name="checkboxIncomes" type="checkbox"> Stipend
+                            </label>
+                        </div>
+                    </div>
+                </form>
+                <div class="btn-group-main">
+                    <button type="button" class="btn-exit" id="exitStatisticsMain"><i class="far fa-times-circle"></i></button>
+                    <button type="button" class="btn-default" id="checkChartMain"><i class="fas fa-check"></i></button>
+                </div>
+
+            </div>
+            <div id="statisticsChartMain" class="main-box chart box-hidden">
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-upper">
+            <p>Contact the developer: roman.melnykovych97@gmail.com</p>
+            <a href="https://www.instagram.com/romanmelnikovich/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/sector9779"><i class="fab fa-facebook-square"></i></a>
+            <a href="https://www.linkedin.com/in/roman-melnykovych-530577188/"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <div class="footer-lower">
+            <p>money-trecker.zzz.com.ua, 2019</p>
+        </div>
+    </footer>
+</div>
+
+
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js?hcode=be5162d915534272a57d0bb781d27f2b"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js?hcode=be5162d915534272a57d0bb781d27f2b"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js?hcode=be5162d915534272a57d0bb781d27f2b"></script>
+
+<!-- @if NODE_ENV='development' -->
+<script src="src/lib/jquery.js"></script>
+<script data-main="src/ts/config.js" src="src/lib/require.js"></script>
+<!-- @endif -->
+
+<!-- @if NODE_ENV='production' -->
+<script data-main="js/build.js" src="js/require.js"></script>
+<!-- @endif -->
+<script src="https://kit.fontawesome.com/36a3d550cb.js"></script>
+
+</body>
+</html>

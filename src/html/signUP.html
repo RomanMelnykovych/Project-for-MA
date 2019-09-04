@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- @if NODE_ENV='development' -->
     <link rel="stylesheet" href="../sass/styleSignInAndSignUp.css">
+    <!-- @endif -->
+    <!-- @if NODE_ENV='production' -->
+    <link rel="stylesheet" href="../css/styleSignInAndSignUp.css">
+    <!-- @endif -->
     <title>Sign Up</title>
 </head>
 <body>
@@ -38,8 +43,16 @@
     </div>
 </div>
 
-<script src="../ts/modules/jquery.js"></script>
+
+<!-- @if NODE_ENV='development' -->
+<script src="../lib/jquery.js"></script>
 <script rel="script" type="application/javascript" src="../ts/signUP.js"></script>
+<!-- @endif -->
+
+<!-- @if NODE_ENV='production' -->
+<script src="../js/jquery.js"></script>
+<script rel="script" type="application/javascript" src="../js/signUP.js"></script>
+<!-- @endif -->
 <script async src="https://kit.fontawesome.com/36a3d550cb.js"></script>
 
 </body>

@@ -14,7 +14,7 @@ $(document).ready(function () : void {
         userPassword : any,
         userEmail : any;
 
-    $("#sign-in").on("click",function () : any{
+    $("#sign-in").on("click",function () : void{
         userFirstName = $("#userFirstName"); // стукаємся до селекторів
         userLastName = $("#userLastName");
         userPassword = $("#userPassword");
@@ -34,6 +34,7 @@ $(document).ready(function () : void {
                 if (userArray === undefined){
                     userArray = [tempArray];
                 }else {
+                    
                     userArray.push(tempArray);
                 }
                 localStorage.setItem("users", JSON.stringify(userArray));

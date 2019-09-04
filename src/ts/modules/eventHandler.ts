@@ -602,7 +602,7 @@ define(['jquery', 'reloadData', 'historyMethod', 'amountMethod', 'chartMethod', 
                         userArray = searchMethod.searchUser(authUser["useremail"], userArray, authUser);
                         localStorage.setItem("users", JSON.stringify(userArray));
                         localStorage.removeItem("authUser");
-                        window.location.href = "../views/signIN.html";
+                        window.location.href = "src/views/signIN.html";
                     }
                 }
                 // {

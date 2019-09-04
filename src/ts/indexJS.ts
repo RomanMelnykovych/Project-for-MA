@@ -1,9 +1,9 @@
 define(['jquery', 'eventHandler', 'getDate', 'reloadData'],
     function ($, eventHandlers, getDate, reloadData) : void{
 
-    if (!localStorage.getItem("authUser")){
-        window.location.href = "../views/signIN.html";
-    }
+        if (!localStorage.getItem("authUser")){
+            window.location.href = "views/signIN.html";
+        }
 
     $(document).ready(function () : void{
 
@@ -43,3 +43,4 @@ define(['jquery', 'eventHandler', 'getDate', 'reloadData'],
 
     });
 });
+requirejs(["indexJS"]);
