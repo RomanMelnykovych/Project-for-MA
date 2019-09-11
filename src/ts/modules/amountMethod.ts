@@ -9,7 +9,7 @@ define(['jquery', 'getDate', 'searchMethod'], function ($, getDate, searchMethod
             return count;
         }
     };
-    amountMethods["getAmountDay"] = (array : [object], innerBox : any) : void =>{
+    amountMethods["getAmountDay"] = (array : [object], $innerBox : any) : void =>{
         if (array !== undefined){
             let localDay : [object] ;
             let day : string = getDate.currentDay();
@@ -17,13 +17,13 @@ define(['jquery', 'getDate', 'searchMethod'], function ($, getDate, searchMethod
             let count : number = 0;
             if (localDay !== undefined){
                 count = amountMethods["amount"](localDay, count);
-                innerBox.html(`${count}`);
+                $innerBox.html(`${count}`);
             }else {
-                innerBox.html(`${count}`);
+                $innerBox.html(`${count}`);
             }
         }
     };
-    amountMethods["getAmountWeek"] = (array : [object], innerBox : any) : void =>{
+    amountMethods["getAmountWeek"] = (array : [object], $innerBox : any) : void =>{
         if (array !== undefined) {
             let localExpenseWeek : [object];
             let weekStart : string = getDate.getMonday(new Date());
@@ -32,13 +32,13 @@ define(['jquery', 'getDate', 'searchMethod'], function ($, getDate, searchMethod
             let count : number = 0;
             if (localExpenseWeek !== undefined){
                 count = amountMethods["amount"](localExpenseWeek, count);
-                innerBox.html(`${count}`);
+                $innerBox.html(`${count}`);
             }else{
-                innerBox.html(`${count}`);
+                $innerBox.html(`${count}`);
             }
         }
     };
-    amountMethods["getAmountMonth"] = (array : [object], innerBox : any) : void =>{
+    amountMethods["getAmountMonth"] = (array : [object], $innerBox : any) : void =>{
         if (array !== undefined){
             let localExpenseMonth : [object];
             let monthStart : string = getDate.getCurrentMonthStart(new Date());
@@ -47,15 +47,13 @@ define(['jquery', 'getDate', 'searchMethod'], function ($, getDate, searchMethod
             let count : number = 0;
             if (localExpenseMonth !== undefined){
                 count = amountMethods["amount"](localExpenseMonth, count);
-                innerBox.html(`${count}`);
+                $innerBox.html(`${count}`);
             }else {
-                innerBox.html(`${count}`);
+                $innerBox.html(`${count}`);
             }
         }
     };
     amountMethods["getYearBalance"] = (year : string, arrExpense : [object], arrIncomes : [object]) : number =>{
-        console.log(arrExpense);
-        console.log(arrIncomes);
         let countAllExpense : number = 0;
         let countAllIncomes : number = 0;
         let expenseYear : [object];

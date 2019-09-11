@@ -26,7 +26,6 @@ define(function () : object{
                     }
                 }
             }
-            console.log(newArray);
             return newArray;
         }
     };

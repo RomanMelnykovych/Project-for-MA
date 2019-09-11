@@ -26,7 +26,6 @@ define(['jquery', 'searchMethod', 'amountMethod'], function ($, searchMethod, am
                 let data : [object] = [buildDataChart('Expense', countExp, "#FF0000")];
                 data.push(buildDataChart('Incomes', countInc, "#00FF00"));
                 createChartPie(data, $innerBox, periodStart, periodEnd, "Statistic");
-                console.log(data);
                 $innerBox.slideDown("slow");
             }else{
                 alert("No data !!");
@@ -212,7 +211,6 @@ define(['jquery', 'searchMethod', 'amountMethod'], function ($, searchMethod, am
                 let data : [object] = [buildDataChart('Expense', countExp, "#FF0000", null, {enabled: true})];
                 data.push(buildDataChart('Incomes', countInc, "#00CC00", null, {enabled: true}));
                 createChartColumn(data, $innerBox, periodStart, periodEnd, "Statistics");
-                console.log(data);
                 $innerBox.slideDown("slow");
             }else {
                 alert("No data !!");
@@ -313,8 +311,6 @@ define(['jquery', 'searchMethod', 'amountMethod'], function ($, searchMethod, am
                 }
                 if (arrData !== undefined){
                     arrData = arrData.sort();
-                    console.log(arrData);
-
                     createChartLine(arrData, $innerBox, periodStart, periodEnd, "Statistics", "Time", "All");
                     $innerBox.slideDown("slow");
                 }else{
@@ -330,7 +326,6 @@ define(['jquery', 'searchMethod', 'amountMethod'], function ($, searchMethod, am
                 }
                 if (arrData !== undefined){
                     arrData = arrData.sort();
-                    console.log(arrData);
                     createChartLine(arrData, $innerBox, periodStart, periodEnd, "Statistics", "Date", "All");
                     $innerBox.slideDown("slow");
                 }else{
@@ -367,7 +362,6 @@ define(['jquery', 'searchMethod', 'amountMethod'], function ($, searchMethod, am
                 }
                 if (arrData !== undefined){
                     arrData = arrData.sort();
-                    console.log(arrData);
                     createChartLine(arrData, $innerBox, periodStart, periodEnd, "Expense", "Time", "Expense");
                     $innerBox.slideDown("slow");
                 }else{
@@ -392,7 +386,6 @@ define(['jquery', 'searchMethod', 'amountMethod'], function ($, searchMethod, am
                 }
                 if (arrData !== undefined){
                     arrData = arrData.sort();
-                    console.log(arrData);
                     createChartLine(arrData, $innerBox, periodStart, periodEnd, "Expense", "Date", "Expense");
                     $innerBox.slideDown("slow");
                 }else{
@@ -421,7 +414,6 @@ define(['jquery', 'searchMethod', 'amountMethod'], function ($, searchMethod, am
                 }
                 if (arrData !== undefined){
                     arrData = arrData.sort();
-                    console.log(arrData);
                     createChartLine(arrData, $innerBox, periodStart, periodEnd, "Incomes", "Time", "Incomes");
                     $innerBox.slideDown("slow");
                 }else{
@@ -440,7 +432,6 @@ define(['jquery', 'searchMethod', 'amountMethod'], function ($, searchMethod, am
                 }
                 if (arrData !== undefined){
                     arrData = arrData.sort();
-                    console.log(arrData);
                     createChartLine(arrData, $innerBox, periodStart, periodEnd, "Incomes", "Date", "Incomes");
                     $innerBox.slideDown("slow");
                 }else{

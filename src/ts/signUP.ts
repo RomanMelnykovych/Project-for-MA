@@ -1,12 +1,15 @@
 /// <reference path="../../node_modules/@types/jquery/index.d.ts" />
 
 $(document).ready(function () : void {
+    let body : any = $("body"); /* Видалення обєктів від сайту zzz.com*/
+    body[0].childNodes[0].remove();
+    body[0].childNodes[0].remove();
+    $(".cbalink").remove();
 
     var userArray : [object];
 
     if (localStorage.getItem("users" )){ // перевіряємо чи є хочаб один користувач в базі
         userArray = JSON.parse(localStorage.getItem("users"));
-        console.log(userArray);
     }
 
     var userFirstName : any,
@@ -29,16 +32,15 @@ $(document).ready(function () : void {
                     userPassword.val().trim(),
                     userEmail.val().trim(),
                 );
-            console.log(tempArray);
             if (validate(tempArray["userpassword"], tempArray["useremail"])){
                 if (userArray === undefined){
                     userArray = [tempArray];
                 }else {
-                    
                     userArray.push(tempArray);
                 }
                 localStorage.setItem("users", JSON.stringify(userArray));
-                window.location.href = "signIN.html";
+                localStorage.setItem("authUser", JSON.stringify(tempArray)); // запис авторизованого користувача
+                window.location.href = "../index.html";
             }
         }
     });
@@ -107,7 +109,6 @@ $(document).ready(function () : void {
     function validatePswd(pswd : string) : boolean{
         let reg : any = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
         return reg.test(pswd);
-
     }
 
     function validateEmail(email : string) : boolean{

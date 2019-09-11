@@ -1,25 +1,20 @@
 /// <reference path="../../node_modules/@types/jquery/index.d.ts" />
 
-$(document).ready(
-    function () : void {
-        var refererUrl : string = document.referrer; // запис url з якого прийшов користувач
+$(document).ready(function () : void {
+    let body : any = $("body"); /* Видалення обєктів від сайту zzz.com*/
+    body[0].childNodes[0].remove();
+    body[0].childNodes[0].remove();
+    $(".cbalink").remove();
 
-        if (localStorage.getItem("authUser")) { // перевірка чи є авторизований користувач
-            window.location.href = "../../index.html";
-        }
+    if (localStorage.getItem("authUser")) { // перевірка чи є авторизований користувач
+        window.location.href = "../index.html";
+    }
 
         var userArray : [object];
 
         if (localStorage.getItem("users")) { // перевіряємо чи є хочаб один користувач в базі
             userArray = JSON.parse(localStorage.getItem("users")); // витягуєм користувачів
-            console.log(userArray);
         }
-
-        // if (refererUrl === "http://localhost:63342/Project-for-MA/views/signUP.html"){ // умова якщо користувач пройшов реєстрацію, тоді заповнити поля його даними
-        //     let lastUser : number = userArray.length - 1;
-        //     $("#userEmail").val(userArray[lastUser]["useremail"]);
-        //     $("#userPassword").val(userArray[lastUser]["userpassword"]);
-        // }
 
         $("#sign-in").on("click", function (): any { // опрацювання натиску на кнопку
             let userEmail : any = $("#userEmail"); // стукаємся до селекторів
@@ -43,7 +38,7 @@ $(document).ready(
                     icon.addClass("input-group__icon_error");
                 } else if (userEmail.val().trim() === tempUser["useremail"] && userPassword.val().trim() === tempUser["userpassword"]) { // якщо всі дані збігаються тоді авторизувати користувача
                     localStorage.setItem("authUser", JSON.stringify(tempUser)); // запис авторизованого користувача
-                    window.location.href = "../../index.html";
+                    window.location.href = "../index.html";
                 }
             } else {
                 alert("Fill in all the fields !!!");
@@ -63,7 +58,7 @@ $(document).ready(
             }
             return temp
         }
-    });
+});
 
 
 

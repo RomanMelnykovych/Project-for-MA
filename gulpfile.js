@@ -77,10 +77,10 @@ gulp.task('uglify', function () {
 gulp.task('html:dev', function() {
     return gulp.src('src/html/index.html')
         .pipe(preprocess({context: {NODE_ENV: 'development', DEBUG: true}}))
-        .pipe(gulp.dest('./'))
+        .pipe(gulp.dest('src/'))
 });
 gulp.task('html:dev-all', function() {
-    return gulp.src(['src/html/signIN.html', 'src/html/signUp.html'])
+    return gulp.src(['src/html/signIN.html', 'src/html/signUP.html'])
         .pipe(preprocess({context: {NODE_ENV: 'development', DEBUG: true}}))
         .pipe(gulp.dest('src/views/'))
 });

@@ -180,6 +180,9 @@ flex: 1;
   margin: 5px;
   padding-top: 3px;
 }
+.btn-default:hover{
+  box-shadow: 0 0 9px 0 rgba(54,203,108,1);
+}
 .btn-statistics{
   font-size: 23px;
   color: #ffffff;
@@ -187,6 +190,9 @@ flex: 1;
   border-radius: 30px;
   border: none;
   width: 200px;
+}
+.btn-statistics:hover{
+  box-shadow: 0 0 9px 0 rgba(54,203,108,1);
 }
 /*----- Main content End -----*/
 
@@ -279,6 +285,7 @@ flex: 1;
 }
 .item-delete-btn{
   position: absolute;
+  top: 3px;
   right: -25px;
   border: none;
   background-color: transparent;
@@ -353,7 +360,7 @@ flex: 1;
 }
 .btn-exit_history{
   position: absolute;
-  top: 5px;
+  top: 10px;
   right: 5px;
 }
 .btn-chart{
@@ -381,6 +388,9 @@ flex: 1;
   a{
     font-size: 20px;
     color: floralwhite;
+  }
+  a:hover{
+    color: dimgrey;
   }
 }
 .footer-lower{

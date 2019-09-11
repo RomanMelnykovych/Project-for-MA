@@ -36,7 +36,6 @@ define(['jquery', 'reloadData', 'historyMethod', 'amountMethod', 'chartMethod', 
 
     let hiddenClass : string = "box-hidden";
 
-
     handler["handlers"] = function (userArray : [object], authUser : object, expenseArr : [object], incomesArr : [object]) : void{
         let Site : any = {
             init: function() : void{
@@ -49,7 +48,6 @@ define(['jquery', 'reloadData', 'historyMethod', 'amountMethod', 'chartMethod', 
             },
             bindEvent: function(e) : void{
                 e.$el.on(e.event, e.handler);
-                console.log('Bound ' + e.event + ' handler for', e.$el);
             },
             eventHandlers: [
                 {
@@ -134,7 +132,7 @@ define(['jquery', 'reloadData', 'historyMethod', 'amountMethod', 'chartMethod', 
                             expenseAmount = parseInt(expenseAmount);
                         }
 
-                        if (expenseDate === "" || expenseTime === "" || expenseCategory === "" || isNaN(expenseAmount) ){
+                        if (expenseDate === "" || expenseTime === "" || expenseCategory === "" || isNaN(expenseAmount)){
                             alert("Fill in all the fields !!!");
                         } else {
                             temp = buildFunds(expenseDate, expenseTime, expenseCategory, expenseAmount);
@@ -143,7 +141,6 @@ define(['jquery', 'reloadData', 'historyMethod', 'amountMethod', 'chartMethod', 
                             }else {
                                 expenseArr.push(temp);
                             }
-                            console.log(expenseArr);
                             authUser["expense"] = expenseArr;
                             localStorage.setItem("authUser", JSON.stringify(authUser));
 
@@ -184,7 +181,6 @@ define(['jquery', 'reloadData', 'historyMethod', 'amountMethod', 'chartMethod', 
                             }else {
                                 expenseArr.push(temp);
                             }
-                            console.log(expenseArr);
                             authUser["expense"] = expenseArr;
                             localStorage.setItem("authUser", JSON.stringify(authUser));
 
@@ -245,7 +241,6 @@ define(['jquery', 'reloadData', 'historyMethod', 'amountMethod', 'chartMethod', 
                             }else {
                                 incomesArr.push(temp);
                             }
-                            console.log(incomesArr);
                             authUser["incomes"] = incomesArr;
                             localStorage.setItem("authUser", JSON.stringify(authUser));
                             reloadData.reloadMain(expenseArr, incomesArr);
@@ -284,7 +279,6 @@ define(['jquery', 'reloadData', 'historyMethod', 'amountMethod', 'chartMethod', 
                             } else {
                                 incomesArr.push(temp);
                             }
-                            console.log(incomesArr);
                             authUser["incomes"] = incomesArr;
                             localStorage.setItem("authUser", JSON.stringify(authUser));
                             reloadData.reloadMain(expenseArr, incomesArr);
@@ -602,7 +596,7 @@ define(['jquery', 'reloadData', 'historyMethod', 'amountMethod', 'chartMethod', 
                         userArray = searchMethod.searchUser(authUser["useremail"], userArray, authUser);
                         localStorage.setItem("users", JSON.stringify(userArray));
                         localStorage.removeItem("authUser");
-                        window.location.href = "src/views/signIN.html";
+                        window.location.href = "views/signIN.html";
                     }
                 }
                 // {

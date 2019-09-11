@@ -74,10 +74,10 @@ define(function () : object{
         let month : string | number = currentDay.getMonth() + 1;
         let year : string | number = currentDay.getFullYear();
         if (month < 10) {
-            month = "0"+month;
+            month = "0" + month;
         }
         if (day < 10){
-            day = "0"+day;
+            day = "0" + day;
         }
         currentDay = year + "-" + month + "-" + day;
         return currentDay;
